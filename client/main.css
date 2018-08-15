@@ -1,0 +1,53 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow: auto;
+}
+#root {
+  height: 100%;
+}
+
+/*
+-------------------------------------------------------------------------------------Landing Page
+*/
+.LandingPage {
+  height: 100%;
+}
+
+.HeaderNav {
+  background-color: #222;
+  color: grey;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.HeaderNav__item {
+  padding: 19px;
+  margin: 0;
+}
+
+.MainNav {
+  background-color: yellow;
+  color: #222;
+  height: 200px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.MainNav__logo {
+  padding: 0;
+  margin-left: 60px;
+}
+
+.MainNav__main-items {
+  margin-left: 100px;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+} 
