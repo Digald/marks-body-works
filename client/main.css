@@ -19,10 +19,17 @@ html, body {
 .LandingPage__wrapper {
   height: 100%;
   margin: 0 auto;
-  width: 1152px;
+  width: 1400px;
 }
 
-@media only screen and (max-width: 1152px) {
+.LandingPage__wrapper__grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 100px auto;
+}
+
+@media only screen and (max-width: 1400px) {
   .LandingPage__wrapper {
     width: auto;
   }
@@ -43,7 +50,6 @@ html, body {
 }
 
 .MainNav {
-  /* background-color: yellow; */
   background-image: url('/MainNav.png');
   background-repeat: no-repeat;
   color: #222;
@@ -51,6 +57,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  /* grid */
+  grid-area: 1 / 1 / 1 / 1;
+  z-index: 3;
 }
 
 .MainNav__logo {
@@ -69,4 +78,9 @@ html, body {
 
 .MainNav__main-items__item:hover {
   font-weight: bold;
+}
+
+.ImageCarousel {
+  grid-area: 1 / 1 / 2 / 1;
+  z-index: 1;
 }

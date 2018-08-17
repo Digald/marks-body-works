@@ -10,8 +10,10 @@ class LandingPage extends Component {
       <div className="LandingPage">
         <div className="LandingPage__wrapper">
           <HeaderNav />
-          <MainNav />
-          <ImageCarousel />
+          <div className="LandingPage__wrapper__grid">
+            <MainNav />
+            <ImageCarousel />
+          </div>
         </div>
       </div>
     );

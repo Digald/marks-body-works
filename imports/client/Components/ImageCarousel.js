@@ -6,7 +6,7 @@ class ImageCarousel extends Component {
   render() {
     return (
       <div className="ImageCarousel">
-        <Carousel showThumbs={false} infiniteLoop={true} showStatus={false} autoPlay={true}>
+        <Carousel showThumbs={false} showStatus={false} autoPlay={true}>
           <div>
             <img src="barbell.jpeg" alt="Picture of workout equipment"/>
           </div>
