@@ -1,8 +1,14 @@
-html, body {
+@import url('https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker');
+/* font-family: 'Permanent Marker', cursive;
+font-family: 'Oswald', sans-serif; */
+
+html,
+body {
   padding: 0;
   margin: 0;
   height: 100%;
   overflow: auto;
+  font-family: 'Oswald', sans-serif;
 }
 #root {
   height: 100%;
@@ -13,23 +19,33 @@ html, body {
 */
 .LandingPage {
   height: 100%;
-  background-image: url("light-grey-terrazzo.png");
+  /* background-image: url("light-grey-terrazzo.png"); */
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .LandingPage__wrapper {
   height: 100%;
   margin: 0 auto;
-  width: 1400px;
+  width: 1216px;
 }
 
 .LandingPage__wrapper__grid {
-  height: 100%;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 100px auto;
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1216px) {
   .LandingPage__wrapper {
     width: auto;
   }
@@ -38,22 +54,22 @@ html, body {
 .HeaderNav {
   background-color: #222;
   color: grey;
-  height: 50px;
+  /* height: 25px; */
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
 }
 
 .HeaderNav__item {
-  padding: 19px;
+  padding: 10px;
   margin: 0;
 }
 
 .MainNav {
-  background-image: url('/MainNav.png');
+  background-image: url("/MainNav.png");
   background-repeat: no-repeat;
   color: #222;
-  height: 100px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -70,10 +86,15 @@ html, body {
 .MainNav__main-items {
   display: flex;
   justify-content: space-evenly;
-} 
+}
 
 .MainNav__main-items__item {
-  padding: 10px 10px;
+  padding: 10px;
+  border-right: 1px solid #222;
+}
+
+.MainNav__main-items__item:last-child {
+  border-right: none;
 }
 
 .MainNav__main-items__item:hover {
@@ -83,4 +104,8 @@ html, body {
 .ImageCarousel {
   grid-area: 1 / 1 / 2 / 1;
   z-index: 1;
+}
+
+.legend {
+  font-family: 'Permanent Marker', cursive;
 }
