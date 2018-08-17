@@ -13,6 +13,19 @@ html, body {
 */
 .LandingPage {
   height: 100%;
+  background-image: url("light-grey-terrazzo.png");
+}
+
+.LandingPage__wrapper {
+  height: 100%;
+  margin: 0 auto;
+  width: 1152px;
+}
+
+@media only screen and (max-width: 1152px) {
+  .LandingPage__wrapper {
+    width: auto;
+  }
 }
 
 .HeaderNav {
@@ -30,10 +43,11 @@ html, body {
 }
 
 .MainNav {
-  background-color: yellow;
+  /* background-color: yellow; */
+  background-image: url('/MainNav.png');
+  background-repeat: no-repeat;
   color: #222;
-  height: 200px;
-  border-bottom: 1px solid black;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -41,13 +55,18 @@ html, body {
 
 .MainNav__logo {
   padding: 0;
-  margin-left: 60px;
+  margin: 0 50px;
 }
 
 .MainNav__main-items {
-  margin-left: 100px;
-  flex-grow: 1;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 } 
+
+.MainNav__main-items__item {
+  padding: 10px 10px;
+}
+
+.MainNav__main-items__item:hover {
+  font-weight: bold;
+}

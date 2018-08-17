@@ -4,8 +4,8 @@ const MainNav = () => (
   <div className="MainNav">
     <h1 className="MainNav__logo">LOGO</h1>
     <div className="MainNav__main-items">
-        <p>Program One</p>
-        <p>Program Two</p>
+      <p className="MainNav__main-items__item">Power BB</p>
+      <p className="MainNav__main-items__item">5/3/1 Simplest Template</p>
     </div>
   </div>
 );
