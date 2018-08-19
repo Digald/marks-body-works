@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker');
+@import url("https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker");
 /* font-family: 'Permanent Marker', cursive;
 font-family: 'Oswald', sans-serif; */
 
@@ -8,7 +8,7 @@ body {
   margin: 0;
   height: 100%;
   overflow: auto;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 #root {
   height: 100%;
@@ -18,17 +18,17 @@ body {
 -------------------------------------------------------------------------------------Landing Page
 */
 .LandingPage {
+  /* background: -webkit-linear-gradient(to bottom, #434343, #000000); */
   height: 100%;
-  /* background-image: url("light-grey-terrazzo.png"); */
-  background: #000000; /* fallback for old browsers */
+  background: #11998e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to bottom,
-    #434343,
+    white,
     #000000
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to bottom,
-    #434343,
+    white,
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -72,6 +72,7 @@ body {
 .MainNav {
   background-image: url("/MainNav.png");
   background-repeat: no-repeat;
+  /* background-size: 1000px auto; */
   color: #222;
   height: 50px;
   display: flex;
@@ -100,7 +101,6 @@ body {
   justify-content: space-evenly;
 }
 
-
 .MainNav__main-items__item {
   padding: 10px;
   border-right: 1px solid #222;
@@ -120,13 +120,29 @@ body {
 }
 
 .legend {
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
 }
 
 /*
 -------------------------------------------------------------------------------------Power BB page
 */
 .Powerbb__max-title {
+  display: flex;
+  justify-content: center;
+}
+
+.RepMaxForms form {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.RepMaxForms input {
+  width: 50px;
+  margin-right: 5px;
+}
+
+.ChooseWeekDropDown form {
   display: flex;
   justify-content: center;
 }

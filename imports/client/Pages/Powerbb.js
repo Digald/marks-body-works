@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+// import components
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
 import RepMaxForms from '../Components/RepMaxForms';
+import ProgramLifts from '../Components/ProgramLifts';
+import ChooseWeekDropDown from '../Components/ChooseWeekDropDown';
 
 class Powerbb extends Component {
   render() {
@@ -9,10 +12,9 @@ class Powerbb extends Component {
       <div className="Powerbb">
         <HeaderNav />
         <MainNav />
-        <div className="Powerbb__max-title">
-            <h2>1 Rep Max</h2>
-        </div>
         <RepMaxForms/>
+        <ChooseWeekDropDown/>
+        <ProgramLifts/>
       </div>
     );
   }
