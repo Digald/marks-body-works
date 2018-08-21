@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import AccountsUIWrapper from '../AccountsUIWrapper';
 
 class HeaderNav extends Component {
   render() {
@@ -11,12 +12,7 @@ class HeaderNav extends Component {
         <a target="_blank" href="https://www.linkedin.com/in/markalaniz/">
           <p className="HeaderNav__item">LinkedIn</p>
         </a>
-        <Link to="/">
-          <p className="HeaderNav__item">Login</p>
-        </Link>
-        <Link to="/">
-          <p className="HeaderNav__item">Sign Up</p>
-        </Link>
+        <AccountsUIWrapper/>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
 import RepMaxForms from '../Components/RepMaxForms';
-import ProgramLifts from '../Components/ProgramLifts';
+import PBBLifts from '../Components/PBBLifts';
 import ChooseWeekDropDown from '../Components/ChooseWeekDropDown';
 
 class Powerbb extends Component {
@@ -14,7 +14,7 @@ class Powerbb extends Component {
         <MainNav />
         <RepMaxForms/>
         <ChooseWeekDropDown/>
-        <ProgramLifts/>
+        <PBBLifts/>
       </div>
     );
   }

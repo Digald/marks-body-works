@@ -126,6 +126,10 @@ body {
 /*
 -------------------------------------------------------------------------------------Power BB page
 */
+.Powerbb .MainNav {
+  width: 1000px;
+}
+
 .Powerbb__max-title {
   display: flex;
   justify-content: center;
@@ -145,4 +149,23 @@ body {
 .ChooseWeekDropDown form {
   display: flex;
   justify-content: center;
+}
+
+.PBBTable {
+  width: 100%;
+  text-align: center;
+}
+
+/*
+-------------------------------------------------------------------------------------Accounts Wrapper
+*/
+
+#login-sign-in-link {
+  padding: 10px;
+  margin: 0;
+}
+
+#login-buttons a, .accounts-dialog a {
+  cursor: pointer;
+  text-decoration: none;
 }
