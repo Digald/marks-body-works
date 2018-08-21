@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import SectionTitle from './SectionTitle';
+import SectionTitle from "./SectionTitle";
+
+import { withTracker } from 'meteor/react-meteor-data';
+import { WeightSettings } from "../../api/weightSettings";
 
 class RepMaxForms extends Component {
   render() {
     return (
       <div className="RepMaxForms">
-      <SectionTitle title={"1 Rep Max"}/>
+        <SectionTitle title={"1 Rep Max"} />
         <form>
           <label>
             <input name="squat" type="text" />
@@ -29,4 +32,8 @@ class RepMaxForms extends Component {
   }
 }
 
-export default RepMaxForms;
+export default withTracker(() => {
+  return {
+    weights: WeightSettings.find({}).fetch()
+  };
+})(RepMaxForms);
