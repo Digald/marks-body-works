@@ -46,18 +46,19 @@ WeightSettings.attachSchema(WeightSettingsSchema);
 
 if (Meteor.isServer) {
   Meteor.publish("allWeights", function() {
-    return WeightSettings.find({});
+    return WeightSettings.find();
   });
 
   Meteor.methods({
-    async insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax) {
-      await WeightSettings.insert({
+    insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax) {
+      const id = WeightSettings.insert({
         overheadMax,
         benchMax,
         squatMax,
         deadliftMax,
         lastUpdated: new Date()
       });
+      return id;
     }
   });
 }

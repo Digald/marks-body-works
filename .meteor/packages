@@ -21,3 +21,4 @@ accounts-password
 accounts-ui
 aldeed:collection2
 react-meteor-data
+session

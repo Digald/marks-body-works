@@ -20,7 +20,7 @@ class RepMaxForms extends Component {
     const overheadMax = parseInt(
       ReactDOM.findDOMNode(this.refs.ohpmax).value.trim()
     );
-    Meteor.call(
+    const result = Meteor.call(
       "insertRepMaxes",
       overheadMax,
       benchMax,
@@ -64,6 +64,7 @@ class RepMaxForms extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe("allWeights");
   return {
     weights: WeightSettings.find({}).fetch()
   };

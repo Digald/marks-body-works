@@ -165,7 +165,8 @@ body {
   margin: 0;
 }
 
-#login-buttons a, .accounts-dialog a {
+#login-buttons a,
+.accounts-dialog a {
   cursor: pointer;
   text-decoration: none;
 }
