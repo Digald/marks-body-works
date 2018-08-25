@@ -1,39 +1,65 @@
 import React, { Component } from "react";
 import SectionTitle from "./SectionTitle";
-import ReactDOM from "react-dom";
 // Meteor Imports
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
-import { Session } from "meteor/session";
 
 class RepMaxForms extends Component {
   handleSubmit(e) {
     e.preventDefault();
-    const squatMax = parseInt(
-      ReactDOM.findDOMNode(this.refs.squatmax).value.trim()
-    );
-    const benchMax = parseInt(
-      ReactDOM.findDOMNode(this.refs.benchmax).value.trim()
-    );
-    const deadliftMax = parseInt(
-      ReactDOM.findDOMNode(this.refs.deadmax).value.trim()
-    );
-    const overheadMax = parseInt(
-      ReactDOM.findDOMNode(this.refs.ohpmax).value.trim()
-    );
-    Meteor.call(
-      "insertRepMaxes",
-      overheadMax,
-      benchMax,
-      squatMax,
-      deadliftMax,
-      Meteor.userId(),
-      (err, res) => {
-        if (err) console.log(err);
-        console.log(res);
-      }
-    );
-  }
+
+    // Parse submitted values into integers to store
+    const squatMax = parseInt(this.refs.squatmax.value.trim());
+    const benchMax = parseInt(this.refs.benchmax.value.trim());
+    const deadliftMax = parseInt(this.refs.deadmax.value.trim());
+    const overheadMax = parseInt(this.refs.ohpmax.value.trim());
+    if (WeightSettings.find({ user: Meteor.userId() })) {
+      console.log("A user has been found and updated");
+      console.log(this.props.weights);
+      Meteor.call(
+        "updateRepMaxForUser",
+        overheadMax,
+        benchMax,
+        squatMax,
+        deadliftMax,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+        }
+      );
+    } else if (localStorage.getItem("weightReferenceId")) {
+      console.log("A cookie but not a user has been found and updated");
+
+      Meteor.call(
+        "updateRepMaxLocalStorage",
+        overheadMax,
+        benchMax,
+        squatMax,
+        deadliftMax,
+        localStorage.getItem("weightReferenceId"),
+        (err, res) => {
+          if (err) console.log(err);
+        }
+      );
+    } else {
+      console.log("No user or cookie and must be inserted");
+
+      Meteor.call(
+        "insertRepMaxes",
+        overheadMax,
+        benchMax,
+        squatMax,
+        deadliftMax,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+          if (!Meteor.user()) {
+            localStorage.setItem("weightReferenceId", res);
+          }
+        }
+      );
+    }
+  } // end of handleSubmit()
 
   render() {
     return (

@@ -1,7 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
-import { Session } from "meteor/session";
 
 export const WeightSettings = new Mongo.Collection("weightSettings");
 
@@ -47,7 +46,7 @@ WeightSettings.attachSchema(WeightSettingsSchema);
 
 if (Meteor.isServer) {
   Meteor.publish("allWeights", function() {
-    return WeightSettings.find({user: Meteor.userId()});
+    return WeightSettings.find({ user: Meteor.userId() });
   });
 
   Meteor.methods({
@@ -62,7 +61,7 @@ if (Meteor.isServer) {
           deadliftMax,
           lastUpdated: new Date()
         });
-      } else {
+      } else if (!Meteor.user()) {
         id = WeightSettings.insert({
           overheadMax,
           benchMax,
@@ -72,6 +71,42 @@ if (Meteor.isServer) {
         });
       }
       return id;
+    },
+
+    updateRepMaxForUser(overheadMax, benchMax, squatMax, deadliftMax, userid) {
+      WeightSettings.update(
+        { user: userid },
+        {
+          $set: {
+            overheadMax,
+            benchMax,
+            squatMax,
+            deadliftMax,
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    updateRepMaxLocalStorage(
+      overheadMax,
+      benchMax,
+      squatMax,
+      deadliftMax,
+      weightSettingsId
+    ) {
+      WeightSettings.update(
+        { _id: weightSettingsId },
+        {
+          $set: {
+            overheadMax,
+            benchMax,
+            squatMax,
+            deadliftMax,
+            lastUpdated: new Date()
+          }
+        }
+      );
     }
   });
 }
