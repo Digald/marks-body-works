@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
+import { Session } from "meteor/session";
 
 export const WeightSettings = new Mongo.Collection("weightSettings");
 
@@ -46,18 +47,30 @@ WeightSettings.attachSchema(WeightSettingsSchema);
 
 if (Meteor.isServer) {
   Meteor.publish("allWeights", function() {
-    return WeightSettings.find();
+    return WeightSettings.find({user: Meteor.userId()});
   });
 
   Meteor.methods({
-    insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax) {
-      const id = WeightSettings.insert({
-        overheadMax,
-        benchMax,
-        squatMax,
-        deadliftMax,
-        lastUpdated: new Date()
-      });
+    insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax, userid) {
+      let id;
+      if (Meteor.user()) {
+        id = WeightSettings.insert({
+          user: userid,
+          overheadMax,
+          benchMax,
+          squatMax,
+          deadliftMax,
+          lastUpdated: new Date()
+        });
+      } else {
+        id = WeightSettings.insert({
+          overheadMax,
+          benchMax,
+          squatMax,
+          deadliftMax,
+          lastUpdated: new Date()
+        });
+      }
       return id;
     }
   });

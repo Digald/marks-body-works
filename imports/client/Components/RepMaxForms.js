@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 // Meteor Imports
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
+import { Session } from "meteor/session";
 
 class RepMaxForms extends Component {
   handleSubmit(e) {
@@ -20,12 +21,13 @@ class RepMaxForms extends Component {
     const overheadMax = parseInt(
       ReactDOM.findDOMNode(this.refs.ohpmax).value.trim()
     );
-    const result = Meteor.call(
+    Meteor.call(
       "insertRepMaxes",
       overheadMax,
       benchMax,
       squatMax,
       deadliftMax,
+      Meteor.userId(),
       (err, res) => {
         if (err) console.log(err);
         console.log(res);
