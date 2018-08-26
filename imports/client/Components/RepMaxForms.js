@@ -5,6 +5,10 @@ import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
 class RepMaxForms extends Component {
+  state = {
+    defaultSquatValue: 0
+  };
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -13,9 +17,8 @@ class RepMaxForms extends Component {
     const benchMax = parseInt(this.refs.benchmax.value.trim());
     const deadliftMax = parseInt(this.refs.deadmax.value.trim());
     const overheadMax = parseInt(this.refs.ohpmax.value.trim());
-    if (WeightSettings.find({ user: Meteor.userId() })) {
+    if (WeightSettings.find({ user: Meteor.userId() }) && Meteor.user()) {
       console.log("A user has been found and updated");
-      console.log(this.props.weights);
       Meteor.call(
         "updateRepMaxForUser",
         overheadMax,
@@ -54,12 +57,22 @@ class RepMaxForms extends Component {
         (err, res) => {
           if (err) console.log(err);
           if (!Meteor.user()) {
-            localStorage.setItem("weightReferenceId", res);
+            localStorage.setItem("weightRefId", res);
           }
         }
       );
     }
   } // end of handleSubmit()
+
+  async componentWillMount() {
+    const currentValues = await this.props.weights.map(i => {
+      if (i._id === localStorage.getItem("weightRefId")) {
+        console.log(i);
+        return i;
+      }
+    });
+    await this.setState({ defaultSquatValue: currentValues.squatMax });
+  }
 
   render() {
     return (
@@ -67,7 +80,16 @@ class RepMaxForms extends Component {
         <SectionTitle title={"1 Rep Max"} />
         <form id="repmaxform" onSubmit={e => this.handleSubmit(e)}>
           <label>
-            <input name="squat" type="text" ref="squatmax" />
+            <input
+              name="squat"
+              type="text"
+              ref="squatmax"
+              defaultValue={
+                Meteor.user()
+                  ? this.props.weights.squatMax
+                  : this.state.defaultSquatValue
+              }
+            />
             Squat
           </label>
           <label>
@@ -84,7 +106,7 @@ class RepMaxForms extends Component {
           </label>
         </form>
         <button type="submit" form="repmaxform">
-          Submit
+          Save
         </button>
       </div>
     );
