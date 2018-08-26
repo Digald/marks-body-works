@@ -7,7 +7,6 @@ import { WeightSettings } from "../../api/weightSettings";
 class RepMaxForms extends Component {
   handleSubmit(e) {
     e.preventDefault();
-
     // Parse submitted values into integers to store
     const squatMax = parseInt(this.refs.squatmax.value.trim());
     const benchMax = parseInt(this.refs.benchmax.value.trim());
@@ -29,7 +28,7 @@ class RepMaxForms extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightReferenceId")) {
+    } else if (localStorage.getItem("weightRefId")) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
@@ -38,7 +37,7 @@ class RepMaxForms extends Component {
         benchMax,
         squatMax,
         deadliftMax,
-        localStorage.getItem("weightReferenceId"),
+        localStorage.getItem("weightRefId"),
         (err, res) => {
           if (err) console.log(err);
         }
@@ -77,7 +76,6 @@ class RepMaxForms extends Component {
     if (!this.props.ready) {
       return <div>Loading</div>;
     }
-    console.log(this.props);
     return (
       <div className="RepMaxForms">
         <SectionTitle title="1 Rep Max" />

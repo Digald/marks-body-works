@@ -2,9 +2,9 @@ import React, { Component } from "react";
 // import components
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
-import RepMaxForms from '../Components/RepMaxForms';
-import PBBLifts from '../Components/PBBLifts';
-import ChooseWeekDropDown from '../Components/ChooseWeekDropDown';
+import RepMaxForms from "../Components/RepMaxForms";
+import PBBLifts from "../Components/PBBLifts";
+import ChooseWeekDropDown from "../Components/ChooseWeekDropDown";
 
 class Powerbb extends Component {
   render() {
@@ -12,9 +12,9 @@ class Powerbb extends Component {
       <div className="Powerbb">
         <HeaderNav />
         <MainNav />
-        <RepMaxForms/>
-        <ChooseWeekDropDown/>
-        <PBBLifts/>
+        <RepMaxForms />
+        <ChooseWeekDropDown />
+        <PBBLifts />
       </div>
     );
   }

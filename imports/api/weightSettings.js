@@ -1,14 +1,13 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
-import { Session } from 'meteor/session'
 
 export const WeightSettings = new Mongo.Collection("weightSettings");
 
 const PowerbbSchema = new SimpleSchema({
   workoutWeek: {
     type: String,
-    required: false
+    defaultValue: "Week 1 Phase 1"
   }
 });
 
@@ -104,6 +103,47 @@ if (Meteor.isServer) {
             benchMax,
             squatMax,
             deadliftMax,
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    insertWeekOfProgram(week, userId) {
+      let id;
+      if (Meteor.user()) {
+        id = WeightSettings.insert({
+          user: userId,
+          powerbb: { workoutWeek: week },
+          lastUpdated: new Date()
+        });
+      } else if (!Meteor.user()) {
+        id = WeightSettings.insert({
+          powerbb: { workoutWeek: week },
+          lastUpdated: new Date()
+        });
+      }
+      return id;
+    },
+
+    updateWeekOfUser(week, userId) {
+      WeightSettings.update(
+        { user: userId },
+        {
+          $set: {
+            powerbb: { workoutWeek: week },
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    updateWeekOfStorage(week, weightSettingsId) {
+      WeightSettings.update(
+        { _id: weightSettingsId },
+        {
+          $set: {
+            powerbb: { workoutWeek: week },
             lastUpdated: new Date()
           }
         }
