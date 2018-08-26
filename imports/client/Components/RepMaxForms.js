@@ -6,6 +6,7 @@ import { WeightSettings } from "../../api/weightSettings";
 
 class RepMaxForms extends Component {
   state = {
+    defaultMaxes: {},
     defaultSquatValue: 0
   };
 
@@ -64,20 +65,21 @@ class RepMaxForms extends Component {
     }
   } // end of handleSubmit()
 
-  async componentWillMount() {
-    const currentValues = await this.props.weights.map(i => {
-      if (i._id === localStorage.getItem("weightRefId")) {
-        console.log(i);
-        return i;
-      }
-    });
-    await this.setState({ defaultSquatValue: currentValues.squatMax });
+  updateState() {
+    // Doing this on component did update is causing an infinite loop. Working but must be changed
+    if (this.props.ready) {
+      this.props.weights.map(i => {
+        if (i._id === localStorage.getItem("weightRefId")) {
+          return this.setState({ defaultMaxes: i });
+        }
+      });
+    }
   }
 
   render() {
     return (
       <div className="RepMaxForms">
-        <SectionTitle title={"1 Rep Max"} />
+        <SectionTitle title="1 Rep Max" />
         <form id="repmaxform" onSubmit={e => this.handleSubmit(e)}>
           <label>
             <input
@@ -87,7 +89,7 @@ class RepMaxForms extends Component {
               defaultValue={
                 Meteor.user()
                   ? this.props.weights.squatMax
-                  : this.state.defaultSquatValue
+                  : this.state.defaultMaxes
               }
             />
             Squat
@@ -114,8 +116,9 @@ class RepMaxForms extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe("allWeights");
+  const allWeights = Meteor.subscribe("allWeights");
   return {
+    ready: allWeights.ready(),
     weights: WeightSettings.find({}).fetch()
   };
 })(RepMaxForms);
