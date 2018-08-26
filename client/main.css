@@ -151,6 +151,18 @@ body {
   margin-right: 5px;
 }
 
+.RepMaxForms__save {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  color: #222222;
+  background-color: yellow;
+  height: 40px;
+  width: 200px;
+  display: block;
+  margin: 1% auto;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px;
+}
+
 .ChooseWeekDropDown form {
   display: flex;
   justify-content: center;

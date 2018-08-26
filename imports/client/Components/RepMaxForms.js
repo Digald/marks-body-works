@@ -5,11 +5,6 @@ import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
 class RepMaxForms extends Component {
-  state = {
-    defaultMaxes: {},
-    defaultSquatValue: 0
-  };
-
   handleSubmit(e) {
     e.preventDefault();
 
@@ -18,7 +13,10 @@ class RepMaxForms extends Component {
     const benchMax = parseInt(this.refs.benchmax.value.trim());
     const deadliftMax = parseInt(this.refs.deadmax.value.trim());
     const overheadMax = parseInt(this.refs.ohpmax.value.trim());
-    if (WeightSettings.find({ user: Meteor.userId() }) && Meteor.user()) {
+    if (
+      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
+      Meteor.user()
+    ) {
       console.log("A user has been found and updated");
       Meteor.call(
         "updateRepMaxForUser",
@@ -32,7 +30,7 @@ class RepMaxForms extends Component {
         }
       );
     } else if (localStorage.getItem("weightReferenceId")) {
-      console.log("A cookie but not a user has been found and updated");
+      console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
         "updateRepMaxLocalStorage",
@@ -46,7 +44,7 @@ class RepMaxForms extends Component {
         }
       );
     } else {
-      console.log("No user or cookie and must be inserted");
+      console.log("No user or localstorage and must be inserted");
 
       Meteor.call(
         "insertRepMaxes",
@@ -65,18 +63,21 @@ class RepMaxForms extends Component {
     }
   } // end of handleSubmit()
 
-  updateState() {
-    // Doing this on component did update is causing an infinite loop. Working but must be changed
-    if (this.props.ready) {
-      this.props.weights.map(i => {
-        if (i._id === localStorage.getItem("weightRefId")) {
-          return this.setState({ defaultMaxes: i });
-        }
-      });
+  renderSavedWeights(whatLift) {
+    if (Meteor.user() && this.props.weights) {
+      return this.props.weights[0][whatLift];
+    } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
+      return this.props.nonUserWeights[0][whatLift];
+    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
+      return 0;
     }
   }
 
   render() {
+    if (!this.props.ready) {
+      return <div>Loading</div>;
+    }
+    console.log(this.props);
     return (
       <div className="RepMaxForms">
         <SectionTitle title="1 Rep Max" />
@@ -86,28 +87,39 @@ class RepMaxForms extends Component {
               name="squat"
               type="text"
               ref="squatmax"
-              defaultValue={
-                Meteor.user()
-                  ? this.props.weights.squatMax
-                  : this.state.defaultMaxes
-              }
+              defaultValue={this.renderSavedWeights("squatMax")}
             />
             Squat
           </label>
           <label>
-            <input name="bench" type="text" ref="benchmax" />
+            <input
+              name="bench"
+              type="text"
+              ref="benchmax"
+              defaultValue={this.renderSavedWeights("benchMax")}
+            />
             Bench
           </label>
           <label>
-            <input name="dead" type="text" ref="deadmax" />
+            <input
+              name="dead"
+              type="text"
+              ref="deadmax"
+              defaultValue={this.renderSavedWeights("deadliftMax")}
+            />
             Deadlift
           </label>
           <label>
-            <input name="ohp" type="text" ref="ohpmax" />
+            <input
+              name="ohp"
+              type="text"
+              ref="ohpmax"
+              defaultValue={this.renderSavedWeights("overheadMax")}
+            />
             Overhead Press
           </label>
         </form>
-        <button type="submit" form="repmaxform">
+        <button type="submit" className="RepMaxForms__save" form="repmaxform">
           Save
         </button>
       </div>
@@ -116,8 +128,10 @@ class RepMaxForms extends Component {
 }
 
 export default withTracker(() => {
+  const localStorageId = localStorage.getItem("weightRefId");
   const allWeights = Meteor.subscribe("allWeights");
   return {
+    nonUserWeights: WeightSettings.find({ _id: localStorageId }).fetch(),
     ready: allWeights.ready(),
     weights: WeightSettings.find({}).fetch()
   };
