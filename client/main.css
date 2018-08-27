@@ -159,7 +159,7 @@ body {
   width: 200px;
   display: block;
   margin: 1% auto;
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
   font-size: 20px;
   border: none;
 }
@@ -170,10 +170,51 @@ body {
 }
 
 .PBBTable {
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.PBBTable div {
   text-align: center;
 }
 
+.PBBTable__day1 {
+  grid-area: 1 / 2 / 2 / 4;
+}
+.PBBTable__day2 {
+  grid-area: 2 / 2 / 3 / 4;
+}
+.PBBTable__day3 {
+  grid-area: 3 / 2 / 4 / 4;
+}
+.PBBTable__day4 {
+  grid-area: 4 / 2 / 5 / 4;
+}
+.PBBTable__day5 {
+  grid-area: 5 / 2 / 6 / 4;
+}
+
+.AddRepCounter__success {
+  background-color: green;
+  border: none;
+  color: white;
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
+.AddRepCounter__fail {
+  background-color: red;
+  border: none;
+  color: white;
+  height: 30px;
+  width: 30px;
+}
 /*
 -------------------------------------------------------------------------------------Accounts Wrapper
 */
