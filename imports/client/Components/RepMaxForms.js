@@ -63,10 +63,11 @@ class RepMaxForms extends Component {
   } // end of handleSubmit()
 
   renderSavedWeights(whatLift) {
-    if (Meteor.user() && this.props.weights) {
-      return this.props.weights[0][whatLift];
+    const {weights, nonUserWeights} = this.props;
+    if (Meteor.user() && weights) {
+      return weights[0][whatLift];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      return this.props.nonUserWeights[0][whatLift];
+      return nonUserWeights[0][whatLift];
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
       return 0;
     }

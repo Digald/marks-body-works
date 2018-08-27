@@ -161,6 +161,7 @@ body {
   margin: 1% auto;
   font-family: 'Permanent Marker', cursive;
   font-size: 20px;
+  border: none;
 }
 
 .ChooseWeekDropDown form {

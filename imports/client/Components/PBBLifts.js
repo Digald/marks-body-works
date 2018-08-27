@@ -8,10 +8,11 @@ import { WeightSettings } from "../../api/weightSettings";
 class PBBLifts extends Component {
 
   renderSavedWeek() {
-    if (Meteor.user() && this.props.weights) {
-      return this.props.weights[0].powerbb.workoutWeek;
+    const {weights, nonUserWeights} = this.props;
+    if (Meteor.user() && weights) {
+      return weights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      return this.props.nonUserWeights[0].powerbb.workoutWeek;
+      return nonUserWeights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
       return "Week 1 Phase 1";
     }

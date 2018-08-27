@@ -1,6 +1,45 @@
 import React, { Component } from "react";
+// Meteor Imports
+import { withTracker } from "meteor/react-meteor-data";
+import { WeightSettings } from "../../api/weightSettings";
 
 class PBBTable extends Component {
+
+  calculateForUser(whatLift) {
+    const {weights} = this.props;
+    const phase = weights[0].powerbb.workoutWeek.split(' ')[3];
+    if (phase === "1") {
+      return `${weights[0].whatLift * 0.7} 5x4`
+    } else if (phase === "2") {
+      return `${weights[0].whatLift * 0.8} 5x3`
+    } else if (phase === "3") {
+      return `${weights[0].whatLift * 0.9} 5x2`
+    }
+  }
+
+  calculateForNonUser(whatLift) {
+    const {nonUserWeights} = this.props;
+    const phase = nonUserWeights[0].powerbb.workoutWeek.split(' ')[3];
+    if (phase === "1") {
+      return `${nonUserWeights[0][whatLift] * 0.7} 5x4`
+    } else if (phase === "2") {
+      return `${nonUserWeights[0][whatLift] * 0.8} 5x3`
+    } else if (phase === "3") {
+      return `${nonUserWeights[0][whatLift] * 0.9} 5x2`
+    }
+  }
+
+  renderCalculateProgram(whatLift) {
+    const {weights} = this.props;
+    if (Meteor.user() && weights) {
+      return this.calculateRepsUser(whatLift);
+    } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
+      return this.calculateForNonUser(whatLift);
+    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
+      return "Week 1 Phase 1";
+    }
+  }
+
   render() {
     return (
       <table className="PBBTable">
@@ -15,11 +54,11 @@ class PBBTable extends Component {
         </thead>
         <tbody>
           <tr>
-            <td>Overhead Press</td>
-            <td>Squat</td>
+            <td>Overhead Press {this.renderCalculateProgram("overheadMax")}</td>
+            <td>Squat {this.renderCalculateProgram("squatMax")}</td>
             <td>Bicep Curl</td>
-            <td>Bench Press</td>
-            <td>Deadlift</td>
+            <td>Bench Press {this.renderCalculateProgram("benchMax")}</td>
+            <td>Deadlift {this.renderCalculateProgram("deadliftMax")}</td>
           </tr>
           <tr>
             <td>Side Lateral Raise</td>
@@ -76,4 +115,12 @@ class PBBTable extends Component {
   }
 }
 
-export default PBBTable;
+export default withTracker(() => {
+  const localStorageId = localStorage.getItem("weightRefId");
+  const allWeights = Meteor.subscribe("allWeights");
+  return {
+    nonUserWeights: WeightSettings.find({ _id: localStorageId }).fetch(),
+    ready: allWeights.ready(),
+    weights: WeightSettings.find({}).fetch()
+  };
+})(PBBTable);
