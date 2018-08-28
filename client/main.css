@@ -206,7 +206,7 @@ body {
   color: white;
   height: 30px;
   width: 30px;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 .AddRepCounter__fail {
   background-color: red;
@@ -214,6 +214,7 @@ body {
   color: white;
   height: 30px;
   width: 30px;
+  margin-left: 10px;
 }
 /*
 -------------------------------------------------------------------------------------Accounts Wrapper
