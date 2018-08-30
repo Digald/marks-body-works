@@ -56,27 +56,14 @@ class ChooseWeekDropDown extends Component {
       });
     }
   }
-  renderSavedWeek(element, i) {
+  
+  renderSavedWeek() {
     const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights) {
-      console.log("1");
-      return weights[0].powerbb.workOutWeek;
+      return weights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      console.log(element);
-      if (element === nonUserWeights[0].powerbb.workOutWeek) {
-        return (
-          <option selected key={i} value={element}>
-            {element}
-          </option>
-        );
-      }
-      return (
-        <option key={i} value={element}>
-          {element}
-        </option>
-      );
+      return nonUserWeights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      console.log("3");
       return "Week 1 Phase 1";
     }
   }
@@ -85,25 +72,12 @@ class ChooseWeekDropDown extends Component {
     if (!this.props.ready) {
       return <div>Loading</div>;
     }
-    const { weights, nonUserWeights } = this.props;
     return (
       <div className="ChooseWeekDropDown">
         <SectionTitle title={"Choose Week"} />
         <form>
-          <select onChange={e => this.handleChange(e)} name="week">
+          <select value={this.renderSavedWeek()} onChange={e => this.handleChange(e)} name="week">
             {this.state.arrayOfValues.map((element, i) => {
-              // console.log(weights);
-              console.log(nonUserWeights);
-              if (
-                element === nonUserWeights[0].powerbb.workoutWeek ||
-                element === weights[0].powerbb.workoutWeek
-              ) {
-                return (
-                  <option selected key={i} value={element}>
-                    {element}
-                  </option>
-                );
-              }
               return (
                 <option key={i} value={element}>
                   {element}

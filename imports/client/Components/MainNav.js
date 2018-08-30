@@ -6,6 +6,11 @@ const MainNav = () => (
     <Link to="/">
       <h1 className="MainNav__logo">Mark's Body Works</h1>
     </Link>
+    <div className="MainNav__burger-icon">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <div className="MainNav__main-items">
       <Link to="/programs/powerbb">
         <p className="MainNav__main-items__item">Power BB</p>

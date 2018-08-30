@@ -4,7 +4,7 @@ class NotesField extends Component {
   render() {
     return (
       <form className="NotesField">
-        <textarea defaultValue={`${this.props.day} notes`} />
+        <textarea className="NotesField__textarea" defaultValue={`${this.props.day} notes`} />
       </form>
     );
   }

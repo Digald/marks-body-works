@@ -93,10 +93,6 @@ body {
   margin: 0 50px;
   font-size: 25px;
   font-weight: bold;
-  /* color: silver;
-  -webkit-text-fill-color: silver; 
-  -webkit-text-stroke-width: 0.1px;
-  -webkit-text-stroke-color: black; */
   border-top: 2px solid #222;
   border-bottom: 2px solid #222;
 }
@@ -104,6 +100,30 @@ body {
 .MainNav__main-items {
   display: flex;
   justify-content: space-evenly;
+}
+
+.MainNav__burger-icon {
+  display: none;
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 700px) {
+  .MainNav {
+    justify-content: space-between;
+  }
+  .MainNav__main-items {
+    display: none;
+  }
+  .MainNav__burger-icon {
+    display: block;
+  }
+}
+
+.MainNav__burger-icon div {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
 }
 
 .MainNav__main-items__item {
@@ -133,6 +153,12 @@ body {
 */
 .Powerbb .MainNav {
   width: 1000px;
+}
+
+@media only screen and (max-width: 700px) {
+  .Powerbb .MainNav {
+    width: auto;
+  }
 }
 
 .Powerbb__max-title {
@@ -185,21 +211,33 @@ body {
 }
 
 .PBBTable__day1 {
-  grid-area: 1 / 2 / 2 / 4;
+  grid-area: 1 / 1 / 2 / 5;
 }
 .PBBTable__day2 {
-  grid-area: 2 / 2 / 3 / 4;
+  grid-area: 2 / 1 / 3 / 5;
 }
 .PBBTable__day3 {
-  grid-area: 3 / 2 / 4 / 4;
+  grid-area: 3 / 1 / 4 / 5;
 }
 .PBBTable__day4 {
-  grid-area: 4 / 2 / 5 / 4;
+  grid-area: 4 / 1 / 5 / 5;
 }
 .PBBTable__day5 {
-  grid-area: 5 / 2 / 6 / 4;
+  grid-area: 5 / 1 / 6 / 5;
 }
 
+.NotesField__textarea {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 250px;
+}
+
+@media only screen and (max-width: 560px) {
+  .NotesField__textarea {
+    width: 400px;
+  }
+}
 /*
 -------------------------------------------------------------------------------------Accounts Wrapper
 */
