@@ -5,6 +5,22 @@ import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
 class ChooseWeekDropDown extends Component {
+  state = {
+    arrayOfValues: [
+      "Week 1 Phase 1",
+      "Week 2 Phase 1",
+      "Week 3 Phase 1",
+      "Week 4 Phase 1",
+      "Week 5 Phase 2",
+      "Week 6 Phase 2",
+      "Week 7 Phase 2",
+      "Week 8 Phase 2",
+      "Week 9 Phase 3",
+      "Week 10 Phase 3",
+      "Week 11 Phase 3",
+      "Week 12 Phase 3"
+    ]
+  };
 
   async handleChange(e) {
     await this.setState({ week: e.target.value });
@@ -40,25 +56,60 @@ class ChooseWeekDropDown extends Component {
       });
     }
   }
+  renderSavedWeek(element, i) {
+    const { weights, nonUserWeights } = this.props;
+    if (Meteor.user() && weights) {
+      console.log("1");
+      return weights[0].powerbb.workOutWeek;
+    } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
+      console.log(element);
+      if (element === nonUserWeights[0].powerbb.workOutWeek) {
+        return (
+          <option selected key={i} value={element}>
+            {element}
+          </option>
+        );
+      }
+      return (
+        <option key={i} value={element}>
+          {element}
+        </option>
+      );
+    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
+      console.log("3");
+      return "Week 1 Phase 1";
+    }
+  }
 
   render() {
+    if (!this.props.ready) {
+      return <div>Loading</div>;
+    }
+    const { weights, nonUserWeights } = this.props;
     return (
       <div className="ChooseWeekDropDown">
         <SectionTitle title={"Choose Week"} />
         <form>
           <select onChange={e => this.handleChange(e)} name="week">
-            <option value="Week 1 Phase 1">Week 1 Phase 1</option>
-            <option value="Week 2 Phase 1">Week 2 Phase 1</option>
-            <option value="Week 3 Phase 1">Week 3 Phase 1</option>
-            <option value="Week 4 Phase 1">Week 4 Phase 1</option>
-            <option value="Week 5 Phase 2">Week 5 Phase 2</option>
-            <option value="Week 6 Phase 2">Week 6 Phase 2</option>
-            <option value="Week 7 Phase 2">Week 7 Phase 2</option>
-            <option value="Week 8 Phase 2">Week 8 Phase 2</option>
-            <option value="Week 9 Phase 3">Week 9 Phase 3</option>
-            <option value="Week 10 Phase 3">Week 10 Phase 3</option>
-            <option value="Week 11 Phase 3">Week 11 Phase 3</option>
-            <option value="Week 12 Phase 3">Week 12 Phase 3</option>
+            {this.state.arrayOfValues.map((element, i) => {
+              // console.log(weights);
+              console.log(nonUserWeights);
+              if (
+                element === nonUserWeights[0].powerbb.workoutWeek ||
+                element === weights[0].powerbb.workoutWeek
+              ) {
+                return (
+                  <option selected key={i} value={element}>
+                    {element}
+                  </option>
+                );
+              }
+              return (
+                <option key={i} value={element}>
+                  {element}
+                </option>
+              );
+            })}
           </select>
         </form>
       </div>

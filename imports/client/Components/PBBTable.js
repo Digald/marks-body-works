@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AddRepCounter from "./AddRepCounter";
+import NotesField from './NotesField';
 // Meteor Imports
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
@@ -45,85 +45,51 @@ class PBBTable extends Component {
       <div className="PBBTable">
         <div className="PBBTable__day1">
           <h3>Day 1 (Shoulders)</h3>
-          <p>
-            Overhead Press {this.renderCalculateProgram("overheadMax")}{" "}
-            <AddRepCounter />
-          </p>
-          <p>
-            Side Lateral Raise 5x10 <AddRepCounter />
-          </p>
-          <p>
-            Rear Deltoid Raise 3x8 <AddRepCounter />
-          </p>
+          <p>Overhead Press {this.renderCalculateProgram("overheadMax")}</p>
+          <p>Side Lateral Raise 5x10</p>
+          <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
+          <NotesField day="SHOULDERS"/>
         </div>
         <div className="PBBTable__day2">
           <h3>Day 2 (Legs)</h3>
-          <p>
-            Squat {this.renderCalculateProgram("squatMax")} <AddRepCounter />
-          </p>
-          <p>
-            Hamstring Curl 5x10 <AddRepCounter />
-          </p>
-          <p>
-            Rear Deltoid Raise 3x8 <AddRepCounter />
-          </p>
+          <p>Squat {this.renderCalculateProgram("squatMax")}</p>
+          <p>Hamstring Curl 5x10</p>
+          <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
+          <NotesField day="LEGS"/>
         </div>
         <div className="PBBTable__day3">
           <h3>Day 3 (Arms)</h3>
-          <p>
-            Bicep Curl 3x8 <AddRepCounter />
-          </p>
-          <p>
-            Hammer Curl 3x12 <AddRepCounter />
-          </p>
-          <p>
-            Preacher Curl 3x10 <AddRepCounter />
-          </p>
-          <p>
-            Laying Tricep Extension 3x8 <AddRepCounter />
-          </p>
-          <p>
-            Tripcep Kickbacks 3x10 <AddRepCounter />
-          </p>
-          <p>
-            Straight Bar Tripcep Pushdown 3x12 <AddRepCounter />
-          </p>
+          <p>Bicep Curl 3x8</p>
+          <p>Hammer Curl 3x12</p>
+          <p>Preacher Curl 3x10</p>
+          <p>Laying Tricep Extension 3x8</p>
+          <p>Tripcep Kickbacks 3x10</p>
+          <p>Straight Bar Tripcep Pushdown 3x12</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
+          <NotesField day="ARMS"/>
         </div>
         <div className="PBBTable__day4">
           <h3>Day 4 (Chest)</h3>
-          <p>
-            Bench Press {this.renderCalculateProgram("benchMax")}{" "}
-            <AddRepCounter />
-          </p>
-          <p>
-            Incline Dumbell Press 5x10 <AddRepCounter />
-          </p>
-          <p>
-            Incline Dumbell Fly 3x8 <AddRepCounter />
-          </p>
+          <p>Bench Press {this.renderCalculateProgram("benchMax")}</p>
+          <p>Incline Dumbell Press 5x10</p>
+          <p>Incline Dumbell Fly 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
+          <NotesField day="CHEST"/>
         </div>
         <div className="PBBTable__day5">
           <h3>Day 5 (Back)</h3>
-          <p>
-            Deadlift {this.renderCalculateProgram("deadliftMax")}{" "}
-            <AddRepCounter />
-          </p>
-          <p>
-            Dumbell Rows 5x10 <AddRepCounter />
-          </p>
-          <p>
-            Lat Pulldown 3x8 <AddRepCounter />
-          </p>
+          <p>Deadlift {this.renderCalculateProgram("deadliftMax")}</p>
+          <p>Dumbell Rows 5x10</p>
+          <p>Lat Pulldown 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
+          <NotesField day="BACK"/>
         </div>
       </div>
     );

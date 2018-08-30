@@ -200,43 +200,6 @@ body {
   grid-area: 5 / 2 / 6 / 4;
 }
 
-.AddRepCounter p {
-  display: inline;
-  color: white;
-}
-
-.AddRepCounter__√{
-  background: green;
-  font-family: 'Permanent Marker', cursive;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.AddRepCounter__-{
-  background: red;
-  font-family: 'Permanent Marker', cursive;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.AddRepCounter__success {
-  background-color: green;
-  font-family: 'Permanent Marker', cursive;
-  border: none;
-  color: white;
-  margin-left: 10px;
-  height: 30px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
-.AddRepCounter__fail {
-  background-color: red;
-  font-family: 'Permanent Marker', cursive;
-  border: none;
-  color: white;
-  margin-left: 10px;
-  height: 30px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-}
 /*
 -------------------------------------------------------------------------------------Accounts Wrapper
 */
