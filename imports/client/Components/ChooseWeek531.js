@@ -4,21 +4,13 @@ import SectionTitle from "./SectionTitle";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
-class ChooseWeekDropDown extends Component {
+class ChooseWeek531 extends Component {
   state = {
     arrayOfValues: [
-      "Week 1 Phase 1",
-      "Week 2 Phase 1",
-      "Week 3 Phase 1",
-      "Week 4 Phase 1",
-      "Week 5 Phase 2",
-      "Week 6 Phase 2",
-      "Week 7 Phase 2",
-      "Week 8 Phase 2",
-      "Week 9 Phase 3",
-      "Week 10 Phase 3",
-      "Week 11 Phase 3",
-      "Week 12 Phase 3"
+      "5 / 5 / 5",
+      "3 / 3 / 3",
+      "5 / 3 / 1",
+      "Deload"
     ]
   };
 
@@ -31,14 +23,14 @@ class ChooseWeekDropDown extends Component {
     ) {
       console.log("A user has been found and updated");
 
-      Meteor.call("updateWeekOfUser", week, Meteor.userId(), (err, res) => {
+      Meteor.call("updateWeekOfUserFiveThreeOne", week, Meteor.userId(), (err, res) => {
         if (err) console.log(err);
       });
     } else if (localStorage.getItem("weightRefId")) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
-        "updateWeekOfStorage",
+        "updateWeekOfStorageFiveThreeOne",
         week,
         localStorage.getItem("weightRefId"),
         (err, res) => {
@@ -48,7 +40,7 @@ class ChooseWeekDropDown extends Component {
     } else {
       console.log("No user or localstorage and must be inserted");
 
-      Meteor.call("insertWeekOfProgramPowerbb", week, Meteor.userId(), (err, res) => {
+      Meteor.call("insertWeekOfProgramFiveThreeOne", week, Meteor.userId(), (err, res) => {
         if (err) console.log(err);
         if (!Meteor.user()) {
           localStorage.setItem("weightRefId", res);
@@ -60,11 +52,11 @@ class ChooseWeekDropDown extends Component {
   renderSavedWeek() {
     const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights) {
-      return weights[0].powerbb.workoutWeek;
+      return weights[0].fivethreeone.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      return nonUserWeights[0].powerbb.workoutWeek;
+      return nonUserWeights[0].fivethreeone.workoutWeek;
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "Week 1 Phase 1";
+      return "5 / 5 / 5";
     }
   }
 
@@ -99,4 +91,4 @@ export default withTracker(() => {
     ready: allWeights.ready(),
     weights: WeightSettings.find({}).fetch()
   };
-})(ChooseWeekDropDown);
+})(ChooseWeek531);

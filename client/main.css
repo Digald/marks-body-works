@@ -239,6 +239,19 @@ body {
   }
 }
 /*
+-------------------------------------------------------------------------------------531 Page
+*/
+.FiveOneThree .MainNav {
+  width: 1000px;
+}
+
+@media only screen and (max-width: 700px) {
+  .FiveOneThree .MainNav {
+    width: auto;
+  }
+}
+
+/*
 -------------------------------------------------------------------------------------Accounts Wrapper
 */
 

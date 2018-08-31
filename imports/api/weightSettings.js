@@ -11,6 +11,29 @@ const PowerbbSchema = new SimpleSchema({
   }
 });
 
+const FiveThreeOneSchema = new SimpleSchema({
+  workoutWeek: {
+    type: String,
+    defaultValue: "5 / 5 / 5"
+  },
+  closeGripBenchMax: {
+    type: SimpleSchema.Integer,
+    defaultValue: 0
+  },
+  sumoDeadliftMax: {
+    type: SimpleSchema.Integer,
+    defaultValue: 0
+  },
+  inclineBenchMax: {
+    type: SimpleSchema.Integer,
+    defaultValue: 0
+  },
+  frontSquatMax: {
+    type: SimpleSchema.Integer,
+    defaultValue: 0
+  }
+});
+
 const WeightSettingsSchema = new SimpleSchema({
   user: {
     type: String,
@@ -39,6 +62,10 @@ const WeightSettingsSchema = new SimpleSchema({
   powerbb: {
     type: PowerbbSchema,
     required: false
+  },
+  fivethreeone: {
+    type: FiveThreeOneSchema,
+    required: false
   }
 });
 
@@ -50,6 +77,10 @@ if (Meteor.isServer) {
   });
 
   Meteor.methods({
+    /*
+    METHODS FOR POWER BB 
+    */
+
     insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax, userid) {
       let id;
       if (Meteor.user()) {
@@ -109,7 +140,7 @@ if (Meteor.isServer) {
       );
     },
 
-    insertWeekOfProgram(week, userId) {
+    insertWeekOfProgramPowerbb(week, userId) {
       let id;
       if (Meteor.user()) {
         id = WeightSettings.insert({
@@ -148,7 +179,51 @@ if (Meteor.isServer) {
           }
         }
       );
-    }
+    },
+
+    /*
+    METHODS FOR 5/3/1
+    */
+    insertWeekOfProgramFiveThreeOne(week, userId) {
+      let id;
+      if (Meteor.user()) {
+        id = WeightSettings.insert({
+          user: userId,
+          fivethreeone: { workoutWeek: week },
+          lastUpdated: new Date()
+        });
+      } else if (!Meteor.user()) {
+        id = WeightSettings.insert({
+          fivethreeone: { workoutWeek: week },
+          lastUpdated: new Date()
+        });
+      }
+      return id;
+    },
+
+    updateWeekOfUserFiveThreeOne(week, userId) {
+      WeightSettings.update(
+        { user: userId },
+        {
+          $set: {
+            fivethreeone: { workoutWeek: week },
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    updateWeekOfStorageFiveThreeOne(week, weightSettingsId) {
+      WeightSettings.update(
+        { _id: weightSettingsId },
+        {
+          $set: {
+            fivethreeone: { workoutWeek: week },
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
 
   });
 }

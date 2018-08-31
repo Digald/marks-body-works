@@ -15,7 +15,7 @@ const MainNav = () => (
       <Link to="/programs/powerbb">
         <p className="MainNav__main-items__item">Power BB</p>
       </Link>
-      <Link to="programs/531">
+      <Link to="/programs/531">
         <p className="MainNav__main-items__item">5/3/1 Simplest Template</p>
       </Link>
       <Link to="about">

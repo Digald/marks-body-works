@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NotesField from './NotesField';
+import NotesField from "./NotesField";
 // Meteor Imports
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
@@ -9,11 +9,11 @@ class PBBTable extends Component {
     const { weights } = this.props;
     const phase = weights[0].powerbb.workoutWeek.split(" ")[3];
     if (phase === "1") {
-      return `${weights[0].whatLift * 0.7} 5x4`;
+      return `${weights[0][whatLift] * 0.7} 5x4`;
     } else if (phase === "2") {
-      return `${weights[0].whatLift * 0.8} 5x3`;
+      return `${weights[0][whatLift] * 0.8} 5x3`;
     } else if (phase === "3") {
-      return `${weights[0].whatLift * 0.9} 5x2`;
+      return `${weights[0][whatLift] * 0.9} 5x2`;
     }
   }
 
@@ -50,7 +50,7 @@ class PBBTable extends Component {
           <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="SHOULDERS"/>
+          <NotesField day="SHOULDERS" />
         </div>
         <div className="PBBTable__day2">
           <h3>Day 2 (Legs)</h3>
@@ -59,7 +59,7 @@ class PBBTable extends Component {
           <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="LEGS"/>
+          <NotesField day="LEGS" />
         </div>
         <div className="PBBTable__day3">
           <h3>Day 3 (Arms)</h3>
@@ -71,7 +71,7 @@ class PBBTable extends Component {
           <p>Straight Bar Tripcep Pushdown 3x12</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="ARMS"/>
+          <NotesField day="ARMS" />
         </div>
         <div className="PBBTable__day4">
           <h3>Day 4 (Chest)</h3>
@@ -80,7 +80,7 @@ class PBBTable extends Component {
           <p>Incline Dumbell Fly 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="CHEST"/>
+          <NotesField day="CHEST" />
         </div>
         <div className="PBBTable__day5">
           <h3>Day 5 (Back)</h3>
@@ -89,7 +89,7 @@ class PBBTable extends Component {
           <p>Lat Pulldown 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="BACK"/>
+          <NotesField day="BACK" />
         </div>
       </div>
     );
