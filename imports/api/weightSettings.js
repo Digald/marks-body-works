@@ -78,9 +78,12 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     /*
-    METHODS FOR POWER BB 
+    -------------------------------------------METHODS FOR POWER BB 
     */
 
+    /*
+    insert maxes
+    */
     insertRepMaxes(overheadMax, benchMax, squatMax, deadliftMax, userid) {
       let id;
       if (Meteor.user()) {
@@ -140,6 +143,10 @@ if (Meteor.isServer) {
       );
     },
 
+    /*
+    Week of Powerbb program 
+    */
+
     insertWeekOfProgramPowerbb(week, userId) {
       let id;
       if (Meteor.user()) {
@@ -182,8 +189,96 @@ if (Meteor.isServer) {
     },
 
     /*
-    METHODS FOR 5/3/1
+    --------------------------------------------METHODS FOR 5/3/1
     */
+
+    /*
+    insert secondary maxes for 5/3/1 program 
+    */
+
+    insertSecondaryMaxes(
+      frontSquatMax,
+      closeGripBenchMax,
+      sumoDeadliftMax,
+      inclineBenchMax,
+      userid
+    ) {
+      let id;
+      if (Meteor.user()) {
+        id = WeightSettings.insert({
+          user: userid,
+          fivethreeone: {
+            frontSquatMax,
+            closeGripBenchMax,
+            sumoDeadliftMax,
+            inclineBenchMax
+          },
+          lastUpdated: new Date()
+        });
+      } else if (!Meteor.user()) {
+        id = WeightSettings.insert({
+          fivethreeone: {
+            frontSquatMax,
+            closeGripBenchMax,
+            sumoDeadliftMax,
+            inclineBenchMax
+          },
+          lastUpdated: new Date()
+        });
+      }
+      return id;
+    },
+
+    updateSecondaryMaxForUser(
+      frontSquatMax,
+      closeGripBenchMax,
+      sumoDeadliftMax,
+      inclineBenchMax,
+      userid
+    ) {
+      WeightSettings.update(
+        { user: userid },
+        {
+          $set: {
+            fivethreeone: {
+              frontSquatMax,
+              closeGripBenchMax,
+              sumoDeadliftMax,
+              inclineBenchMax
+            },
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    updateSecondaryMaxLocalStorage(
+      frontSquatMax,
+      closeGripBenchMax,
+      sumoDeadliftMax,
+      inclineBenchMax,
+      weightSettingsId
+    ) {
+      WeightSettings.update(
+        { _id: weightSettingsId },
+        {
+          $set: {
+            fivethreeone: {
+              frontSquatMax,
+              closeGripBenchMax,
+              sumoDeadliftMax,
+              inclineBenchMax
+            },
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    /*
+    Week of 5/3/1 program 
+    */
+
     insertWeekOfProgramFiveThreeOne(week, userId) {
       let id;
       if (Meteor.user()) {
@@ -223,7 +318,6 @@ if (Meteor.isServer) {
           }
         }
       );
-    },
-
+    }
   });
 }
