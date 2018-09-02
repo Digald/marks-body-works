@@ -28,7 +28,7 @@ class RepMaxForms extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightRefId")) {
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
@@ -63,13 +63,11 @@ class RepMaxForms extends Component {
   } // end of handleSubmit()
 
   renderSavedWeights(whatLift) {
-    const {weights, nonUserWeights} = this.props;
-    if (Meteor.user() && weights) {
+    const { weights, nonUserWeights } = this.props;
+    if (Meteor.user() && weights.length > 0) {
       return weights[0][whatLift];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0][whatLift];
-    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return 0;
     }
   }
 

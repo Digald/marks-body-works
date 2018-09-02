@@ -231,6 +231,7 @@ body {
   flex-wrap: wrap;
   width: 500px;
   height: 250px;
+  font-family: 'Oswald', sans-serif;
 }
 
 @media only screen and (max-width: 560px) {

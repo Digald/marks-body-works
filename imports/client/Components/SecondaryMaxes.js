@@ -63,13 +63,11 @@ class SecondaryMaxes extends Component {
   } // end of handleSubmit()
 
   renderSavedWeights(whatLift) {
-    const {weights, nonUserWeights} = this.props;
-    if (Meteor.user() && weights) {
+    const { weights, nonUserWeights } = this.props;
+    if (Meteor.user() && weights.length > 0) {
       return weights[0].fivethreeone[whatLift];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0].fivethreeone[whatLift];
-    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return 0;
     }
   }
 
@@ -80,7 +78,7 @@ class SecondaryMaxes extends Component {
     return (
       <div className="RepMaxForms">
         <SectionTitle title="Secondary Maxes" />
-        <form id="repmaxform" onSubmit={e => this.handleSubmit(e)}>
+        <form id="secondarymaxform" onSubmit={e => this.handleSubmit(e)}>
           <label>
             <input
               name="sumo"
@@ -94,7 +92,7 @@ class SecondaryMaxes extends Component {
             <input
               name="incline"
               type="text"
-              ref="inlinemax"
+              ref="inclinemax"
               defaultValue={this.renderSavedWeights("inclineBenchMax")}
             />
             Incline Bench
@@ -118,7 +116,11 @@ class SecondaryMaxes extends Component {
             Close Grip Bench
           </label>
         </form>
-        <button type="submit" className="RepMaxForms__save" form="repmaxform">
+        <button
+          type="submit"
+          className="RepMaxForms__save"
+          form="secondarymaxform"
+        >
           Save
         </button>
       </div>

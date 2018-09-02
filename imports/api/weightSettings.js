@@ -8,6 +8,10 @@ const PowerbbSchema = new SimpleSchema({
   workoutWeek: {
     type: String,
     defaultValue: "Week 1 Phase 1"
+  },
+  used: {
+    type: Boolean,
+    defaultValue: false
   }
 });
 
@@ -31,6 +35,10 @@ const FiveThreeOneSchema = new SimpleSchema({
   frontSquatMax: {
     type: SimpleSchema.Integer,
     defaultValue: 0
+  },
+  used: {
+    type: Boolean,
+    defaultValue: false
   }
 });
 
@@ -60,11 +68,11 @@ const WeightSettingsSchema = new SimpleSchema({
     defaultValue: new Date()
   },
   powerbb: {
-    type: PowerbbSchema,
+    type: PowerbbSchema, //subschema
     required: false
   },
   fivethreeone: {
-    type: FiveThreeOneSchema,
+    type: FiveThreeOneSchema, //subschema
     required: false
   }
 });
@@ -93,7 +101,13 @@ if (Meteor.isServer) {
           benchMax,
           squatMax,
           deadliftMax,
-          lastUpdated: new Date()
+          lastUpdated: new Date(),
+          powerbb: {
+            used: true
+          },
+          fivethreeone: {
+            used: true
+          }
         });
       } else if (!Meteor.user()) {
         id = WeightSettings.insert({
@@ -101,7 +115,13 @@ if (Meteor.isServer) {
           benchMax,
           squatMax,
           deadliftMax,
-          lastUpdated: new Date()
+          lastUpdated: new Date(),
+          powerbb: {
+            used: true
+          },
+          fivethreeone: {
+            used: true
+          }
         });
       }
       return id;

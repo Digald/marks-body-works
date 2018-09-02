@@ -9,7 +9,7 @@ class PBBLifts extends Component {
 
   renderSavedWeek() {
     const {weights, nonUserWeights} = this.props;
-    if (Meteor.user() && weights) {
+    if (Meteor.user() && weights.length > 0) {
       return weights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0].powerbb.workoutWeek;

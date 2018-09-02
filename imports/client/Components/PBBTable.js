@@ -31,8 +31,8 @@ class PBBTable extends Component {
 
   renderCalculateProgram(whatLift) {
     const { weights } = this.props;
-    if (Meteor.user() && weights) {
-      return this.calculateRepsUser(whatLift);
+    if (Meteor.user() && weights.length > 0) {
+      return this.calculateForUser(whatLift);
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return this.calculateForNonUser(whatLift);
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {

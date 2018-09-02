@@ -31,8 +31,8 @@ class FiveThreeOneTable extends Component {
 
   renderCalculateProgram() {
     const { weights } = this.props;
-    if (Meteor.user() && weights) {
-      return this.calculateRepsUser();
+    if (Meteor.user() && weights.length > 0) {
+      return this.calculateForUser();
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return this.calculateForNonUser();
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
