@@ -9,9 +9,25 @@ const PowerbbSchema = new SimpleSchema({
     type: String,
     defaultValue: "Week 1 Phase 1"
   },
-  used: {
-    type: Boolean,
-    defaultValue: false
+  shoulderText: {
+    type: String,
+    required: false
+  },
+  legText: {
+    type: String,
+    required: false
+  },
+  armText: {
+    type: String,
+    required: false
+  },
+  chestText: {
+    type: String,
+    required: false
+  },
+  backText: {
+    type: String,
+    required: false
   }
 });
 
@@ -36,9 +52,25 @@ const FiveThreeOneSchema = new SimpleSchema({
     type: SimpleSchema.Integer,
     defaultValue: 0
   },
-  used: {
-    type: Boolean,
-    defaultValue: false
+  shoulderText: {
+    type: String,
+    required: false
+  },
+  legText: {
+    type: String,
+    required: false
+  },
+  armText: {
+    type: String,
+    required: false
+  },
+  chestText: {
+    type: String,
+    required: false
+  },
+  backText: {
+    type: String,
+    required: false
   }
 });
 
@@ -69,11 +101,13 @@ const WeightSettingsSchema = new SimpleSchema({
   },
   powerbb: {
     type: PowerbbSchema, //subschema
-    required: false
+    required: false,
+    defaultValue: {}
   },
   fivethreeone: {
     type: FiveThreeOneSchema, //subschema
-    required: false
+    required: false,
+    defaultValue: {}
   }
 });
 
@@ -101,13 +135,7 @@ if (Meteor.isServer) {
           benchMax,
           squatMax,
           deadliftMax,
-          lastUpdated: new Date(),
-          powerbb: {
-            used: true
-          },
-          fivethreeone: {
-            used: true
-          }
+          lastUpdated: new Date()
         });
       } else if (!Meteor.user()) {
         id = WeightSettings.insert({
@@ -115,13 +143,7 @@ if (Meteor.isServer) {
           benchMax,
           squatMax,
           deadliftMax,
-          lastUpdated: new Date(),
-          powerbb: {
-            used: true
-          },
-          fivethreeone: {
-            used: true
-          }
+          lastUpdated: new Date()
         });
       }
       return id;
@@ -172,12 +194,12 @@ if (Meteor.isServer) {
       if (Meteor.user()) {
         id = WeightSettings.insert({
           user: userId,
-          powerbb: { workoutWeek: week },
+          "powerbb.workoutWeek": week,
           lastUpdated: new Date()
         });
       } else if (!Meteor.user()) {
         id = WeightSettings.insert({
-          powerbb: { workoutWeek: week },
+          "powerbb.workoutWeek": week,
           lastUpdated: new Date()
         });
       }
@@ -189,7 +211,7 @@ if (Meteor.isServer) {
         { user: userId },
         {
           $set: {
-            powerbb: { workoutWeek: week },
+            "powerbb.workoutWeek": week,
             lastUpdated: new Date()
           }
         }
@@ -201,7 +223,7 @@ if (Meteor.isServer) {
         { _id: weightSettingsId },
         {
           $set: {
-            powerbb: { workoutWeek: week },
+            "powerbb.workoutWeek": week,
             lastUpdated: new Date()
           }
         }
@@ -260,12 +282,10 @@ if (Meteor.isServer) {
         { user: userid },
         {
           $set: {
-            fivethreeone: {
-              frontSquatMax,
-              closeGripBenchMax,
-              sumoDeadliftMax,
-              inclineBenchMax
-            },
+            "fivethreeone.frontSquatMax": frontSquatMax,
+            "fivethreeone.closeGripBenchMax": closeGripBenchMax,
+            "fivethreeone.sumoDeadliftmax": sumoDeadliftMax,
+            "fivethreeone.inclineBenchMax": inclineBenchMax,
             lastUpdated: new Date()
           }
         }
@@ -283,12 +303,10 @@ if (Meteor.isServer) {
         { _id: weightSettingsId },
         {
           $set: {
-            fivethreeone: {
-              frontSquatMax,
-              closeGripBenchMax,
-              sumoDeadliftMax,
-              inclineBenchMax
-            },
+            "fivethreeone.frontSquatMax": frontSquatMax,
+            "fivethreeone.closeGripBenchMax": closeGripBenchMax,
+            "fivethreeone.sumoDeadliftmax": sumoDeadliftMax,
+            "fivethreeone.inclineBenchMax": inclineBenchMax,
             lastUpdated: new Date()
           }
         }
@@ -321,7 +339,7 @@ if (Meteor.isServer) {
         { user: userId },
         {
           $set: {
-            fivethreeone: { workoutWeek: week },
+            "fivethreeone.workoutWeek": week,
             lastUpdated: new Date()
           }
         }
@@ -333,7 +351,7 @@ if (Meteor.isServer) {
         { _id: weightSettingsId },
         {
           $set: {
-            fivethreeone: { workoutWeek: week },
+            "fivethreeone.workoutWeek": week,
             lastUpdated: new Date()
           }
         }

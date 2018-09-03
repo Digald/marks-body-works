@@ -23,8 +23,7 @@ class ChooseWeekDropDown extends Component {
   };
 
   async handleChange(e) {
-    await this.setState({ week: e.target.value });
-    const { week } = this.state;
+    const week = e.target.value;
     if (
       WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
       Meteor.user()
@@ -58,14 +57,11 @@ class ChooseWeekDropDown extends Component {
   }
   
   renderSavedWeek() {
-    console.log(this.props);
     const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights.length > 0) {
       return weights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0].powerbb.workoutWeek;
-    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "Week 1 Phase 1";
     }
   }
 

@@ -7,6 +7,7 @@ import { WeightSettings } from "../../api/weightSettings";
 class RepMaxForms extends Component {
   handleSubmit(e) {
     e.preventDefault();
+    console.log(e.target);
     // Parse submitted values into integers to store
     const squatMax = parseInt(this.refs.squatmax.value.trim());
     const benchMax = parseInt(this.refs.benchmax.value.trim());

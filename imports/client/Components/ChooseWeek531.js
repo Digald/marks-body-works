@@ -6,26 +6,25 @@ import { WeightSettings } from "../../api/weightSettings";
 
 class ChooseWeek531 extends Component {
   state = {
-    arrayOfValues: [
-      "5 / 5 / 5",
-      "3 / 3 / 3",
-      "5 / 3 / 1",
-      "Deload"
-    ]
+    arrayOfValues: ["5 / 5 / 5", "3 / 3 / 3", "5 / 3 / 1", "Deload"]
   };
 
   async handleChange(e) {
-    await this.setState({ week: e.target.value });
-    const { week } = this.state;
+    const week = e.target.value;
     if (
       WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
       Meteor.user()
     ) {
       console.log("A user has been found and updated");
 
-      Meteor.call("updateWeekOfUserFiveThreeOne", week, Meteor.userId(), (err, res) => {
-        if (err) console.log(err);
-      });
+      Meteor.call(
+        "updateWeekOfUserFiveThreeOne",
+        week,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+        }
+      );
     } else if (localStorage.getItem("weightRefId")) {
       console.log("Localstorage but not a user has been found and updated");
 
@@ -40,23 +39,26 @@ class ChooseWeek531 extends Component {
     } else {
       console.log("No user or localstorage and must be inserted");
 
-      Meteor.call("insertWeekOfProgramFiveThreeOne", week, Meteor.userId(), (err, res) => {
-        if (err) console.log(err);
-        if (!Meteor.user()) {
-          localStorage.setItem("weightRefId", res);
+      Meteor.call(
+        "insertWeekOfProgramFiveThreeOne",
+        week,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+          if (!Meteor.user()) {
+            localStorage.setItem("weightRefId", res);
+          }
         }
-      });
+      );
     }
   }
-  
-  renderSavedWeek() {
+
+  render531Week() {
     const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights.length > 0) {
       return weights[0].fivethreeone.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0].fivethreeone.workoutWeek;
-    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "5 / 5 / 5";
     }
   }
 
@@ -68,7 +70,10 @@ class ChooseWeek531 extends Component {
       <div className="ChooseWeekDropDown">
         <SectionTitle title={"Choose Week"} />
         <form>
-          <select value={this.renderSavedWeek()} onChange={e => this.handleChange(e)} name="week">
+          <select
+            value={this.render531Week()}
+            onChange={e => this.handleChange(e)}
+          >
             {this.state.arrayOfValues.map((element, i) => {
               return (
                 <option key={i} value={element}>
