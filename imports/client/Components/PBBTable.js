@@ -9,11 +9,11 @@ class PBBTable extends Component {
     const { weights } = this.props;
     const phase = weights[0].powerbb.workoutWeek.split(" ")[3];
     if (phase === "1") {
-      return `${weights[0][whatLift] * 0.7} 5x4`;
+      return `${(weights[0][whatLift] * 0.7).toFixed(1)} 5x4`;
     } else if (phase === "2") {
-      return `${weights[0][whatLift] * 0.8} 5x3`;
+      return `${(weights[0][whatLift] * 0.8).toFixed(1)} 5x3`;
     } else if (phase === "3") {
-      return `${weights[0][whatLift] * 0.9} 5x2`;
+      return `${(weights[0][whatLift] * 0.9).toFixed(1)} 5x2`;
     }
   }
 
@@ -36,7 +36,7 @@ class PBBTable extends Component {
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return this.calculateForNonUser(whatLift);
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "??";
+      return "???";
     }
   }
 

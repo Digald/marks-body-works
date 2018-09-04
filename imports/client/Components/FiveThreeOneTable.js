@@ -1,71 +1,146 @@
 import React, { Component } from "react";
-import NotesField from './NotesField';
+import NotesField from "./NotesField";
 // Meteor Imports
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
 class FiveThreeOneTable extends Component {
-  calculateForUser() {
+  state = {
+    weeks: [
+      [
+        [0.65, 0.75, 0.85],
+        [0.5, 0.6, 0.7],
+        "5 / 5 / 5",
+        ["5", "5", "5+"],
+        ["10", "10", "10"]
+      ],
+      [
+        [0.7, 0.8, 0.9],
+        [0.6, 0.7, 0.8],
+        "3 / 3 / 3",
+        ["3", "3", "3+"],
+        ["8", "8", "6"]
+      ],
+      [
+        [0.75, 0.85, 0.95],
+        [0.65, 0.75, 0.85],
+        "5 / 3 / 1",
+        ["5", "3", "1+"],
+        ["5", "5", "5", "5"]
+      ],
+      [
+        [0.4, 0.5, 0.6],
+        [0.4, 0.5, 0.6],
+        "Deload",
+        ["5", "5", "5"],
+        ["5", "5", "5"]
+      ]
+    ]
+  };
+
+  calculateForUser(whatLift, option) {
     const { weights } = this.props;
-    const phase = weights[0].powerbb.workoutWeek.split(" ")[3];
-    if (phase === "1") {
-      return `${weights[0].whatLift * 0.7} 5x4`;
-    } else if (phase === "2") {
-      return `${weights[0].whatLift * 0.8} 5x3`;
-    } else if (phase === "3") {
-      return `${weights[0].whatLift * 0.9} 5x2`;
+    const { weeks } = this.state;
+    if (option === "main") {
+      return weeks.map(element => {
+        if (weights[0].fivethreeone.workoutWeek === element[2]) {
+          return element[0].map((percentage, i) => {
+            return `${(weights[0][whatLift] * percentage).toFixed(1)}x${
+              element[3][i]
+            } `;
+          });
+        }
+      });
+    } else if (option === "secondary") {
+      return weeks.map(element => {
+        if (weights[0].fivethreeone.workoutWeek === element[2]) {
+          return element[1].map((percentage, i) => {
+            return `${(weights[0].fivethreeone[whatLift] * percentage).toFixed(
+              1
+            )}x${element[4][i]} `;
+          });
+        }
+      });
     }
   }
 
-  calculateForNonUser() {
+  calculateForNonUser(whatLift, option) {
     const { nonUserWeights } = this.props;
-    const phase = nonUserWeights[0].fivethreeone.workoutWeek;
-    if (phase === "1") {
-      return `${(nonUserWeights[0][whatLift] * 0.7).toFixed(1)} 5x4`;
-    } else if (phase === "2") {
-      return `${(nonUserWeights[0][whatLift] * 0.8).toFixed(1)} 5x3`;
-    } else if (phase === "3") {
-      return `${(nonUserWeights[0][whatLift] * 0.9).toFixed(1)} 5x2`;
+    const { weeks } = this.state;
+    if (option === "main") {
+      return weeks.map(element => {
+        if (nonUserWeights[0].fivethreeone.workoutWeek === element[2]) {
+          return element[0].map((percentage, i) => {
+            return `${(nonUserWeights[0][whatLift] * percentage).toFixed(1)}x${
+              element[3][i]
+            } `;
+          });
+        }
+      });
+    } else if (option === "secondary") {
+      return weeks.map(element => {
+        if (nonUserWeights[0].fivethreeone.workoutWeek === element[2]) {
+          return element[1].map((percentage, i) => {
+            return `${(
+              nonUserWeights[0].fivethreeone[whatLift] * percentage
+            ).toFixed(1)}x${element[4][i]} `;
+          });
+        }
+      });
     }
   }
 
-  renderCalculateProgram() {
+  renderCalculateProgram(whatLift, option) {
     const { weights } = this.props;
     if (Meteor.user() && weights.length > 0) {
-      return this.calculateForUser();
+      return this.calculateForUser(whatLift, option);
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      return this.calculateForNonUser();
+      return this.calculateForNonUser(whatLift, option);
     } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "??";
+      return "???";
     }
   }
 
   render() {
     return (
-      <div className="FiveThreeOneTable">
-        <div className="FiveThreeOneTable__day1">
+      <div className="FiveThreeOneTable PBBTable">
+        <div className="FiveThreeOneTable__day1 PBBTable__day1">
           <h3>Day 1 (Overhead Press)</h3>
-          <p>Overhead Press {this.renderCalculateProgram("overheadMax")}</p>
-          <p>Close Grip Bench</p>
-          <NotesField day="SHOULDERS"/>
+          <p>
+            Overhead Press {this.renderCalculateProgram("overheadMax", "main")}
+          </p>
+          <p>
+            Close Grip Bench{" "}
+            {this.renderCalculateProgram("closeGripBenchMax", "secondary")}
+          </p>
+          <NotesField day="SHOULDERS" />
         </div>
-        <div className="FiveThreeOneTable__day2">
+        <div className="FiveThreeOneTable__day2 PBBTable__day2">
           <h3>Day 2 (Squat)</h3>
-          <p>Squat {this.renderCalculateProgram("squatMax")}</p>
-          <p>Sumo Deadlift</p>
-          <NotesField day="LEGS"/>
+          <p>Squat {this.renderCalculateProgram("squatMax", "main")}</p>
+          <p>
+            Sumo Deadlift{" "}
+            {this.renderCalculateProgram("sumoDeadliftMax", "secondary")}
+          </p>
+          <NotesField day="LEGS" />
         </div>
-        <div className="FiveThreeOneTable__day3">
+        <div className="FiveThreeOneTable__day3 PBBTable__day3">
           <h3>Day 4 (Bench Press)</h3>
-          <p>Bench Press {this.renderCalculateProgram("benchMax")}</p>
-          <p>Incline Dumbell Press</p>
-          <NotesField day="CHEST"/>
+          <p>Bench Press {this.renderCalculateProgram("benchMax", "main")}</p>
+          <p>
+            Incline Dumbell Press{" "}
+            {this.renderCalculateProgram("inclineBenchMax", "secondary")}
+          </p>
+          <NotesField day="CHEST" />
         </div>
-        <div className="FiveThreeOneTable__day4">
+        <div className="FiveThreeOneTable__day4 PBBTable__day4">
           <h3>Day 5 (Deadlift)</h3>
-          <p>Deadlift {this.renderCalculateProgram("deadliftMax")}</p>
-          <p>Front Squat</p>
-          <NotesField day="BACK"/>
+          <p>Deadlift {this.renderCalculateProgram("deadliftMax", "main")}</p>
+          <p>
+            Front Squat{" "}
+            {this.renderCalculateProgram("frontSquatMax", "secondary")}
+          </p>
+          <NotesField day="BACK" />
         </div>
       </div>
     );

@@ -12,8 +12,6 @@ class FiveThreeOneLifts extends Component {
       return weights[0].fivethreeone.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0].fivethreeone.workoutWeek;
-    } else if (!Meteor.user() && !localStorage.getItem("weightRefId")) {
-      return "5 / 5 / 5";
     }
   }
 

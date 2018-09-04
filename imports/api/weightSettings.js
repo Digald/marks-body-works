@@ -284,7 +284,7 @@ if (Meteor.isServer) {
           $set: {
             "fivethreeone.frontSquatMax": frontSquatMax,
             "fivethreeone.closeGripBenchMax": closeGripBenchMax,
-            "fivethreeone.sumoDeadliftmax": sumoDeadliftMax,
+            "fivethreeone.sumoDeadliftMax": sumoDeadliftMax,
             "fivethreeone.inclineBenchMax": inclineBenchMax,
             lastUpdated: new Date()
           }
