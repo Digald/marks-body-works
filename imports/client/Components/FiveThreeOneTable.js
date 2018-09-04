@@ -113,7 +113,11 @@ class FiveThreeOneTable extends Component {
             Close Grip Bench{" "}
             {this.renderCalculateProgram("closeGripBenchMax", "secondary")}
           </p>
-          <NotesField day="SHOULDERS" />
+          <p>Barbell Row 3x10</p>
+          <p>Lat Pulldown 3x10</p>
+          <p>Bicep Curl 3x10</p>
+          <p>DB Tricep Extension 3x10</p>
+          <NotesField day="SHOULDERS" program="531"/>
         </div>
         <div className="FiveThreeOneTable__day2 PBBTable__day2">
           <h3>Day 2 (Squat)</h3>
@@ -122,7 +126,9 @@ class FiveThreeOneTable extends Component {
             Sumo Deadlift{" "}
             {this.renderCalculateProgram("sumoDeadliftMax", "secondary")}
           </p>
-          <NotesField day="LEGS" />
+          <p>Personal Ab Routine</p>
+          <p>HIIT Cardio Routine</p>
+          <NotesField day="LEGS" program="531"/>
         </div>
         <div className="FiveThreeOneTable__day3 PBBTable__day3">
           <h3>Day 4 (Bench Press)</h3>
@@ -131,7 +137,11 @@ class FiveThreeOneTable extends Component {
             Incline Dumbell Press{" "}
             {this.renderCalculateProgram("inclineBenchMax", "secondary")}
           </p>
-          <NotesField day="CHEST" />
+          <p>Barbell Row 3x10</p>
+          <p>Lat Pulldown 3x10</p>
+          <p>Hammer Curl 3x10</p>
+          <p>Tricep Flat Pushdown 3x10</p>
+          <NotesField day="CHEST" program="531"/>
         </div>
         <div className="FiveThreeOneTable__day4 PBBTable__day4">
           <h3>Day 5 (Deadlift)</h3>
@@ -140,7 +150,9 @@ class FiveThreeOneTable extends Component {
             Front Squat{" "}
             {this.renderCalculateProgram("frontSquatMax", "secondary")}
           </p>
-          <NotesField day="BACK" />
+          <p>Personal Ab Routine</p>
+          <p>HIIT Cardio Routine</p>
+          <NotesField day="BACK" program="531"/>
         </div>
       </div>
     );

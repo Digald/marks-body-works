@@ -1,78 +1,9 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 import SimpleSchema from "simpl-schema";
+import { FiveThreeOneSchema, PowerbbSchema } from "./subSchemas";
 
 export const WeightSettings = new Mongo.Collection("weightSettings");
-
-const PowerbbSchema = new SimpleSchema({
-  workoutWeek: {
-    type: String,
-    defaultValue: "Week 1 Phase 1"
-  },
-  shoulderText: {
-    type: String,
-    required: false
-  },
-  legText: {
-    type: String,
-    required: false
-  },
-  armText: {
-    type: String,
-    required: false
-  },
-  chestText: {
-    type: String,
-    required: false
-  },
-  backText: {
-    type: String,
-    required: false
-  }
-});
-
-const FiveThreeOneSchema = new SimpleSchema({
-  workoutWeek: {
-    type: String,
-    defaultValue: "5 / 5 / 5"
-  },
-  closeGripBenchMax: {
-    type: SimpleSchema.Integer,
-    defaultValue: 0
-  },
-  sumoDeadliftMax: {
-    type: SimpleSchema.Integer,
-    defaultValue: 0
-  },
-  inclineBenchMax: {
-    type: SimpleSchema.Integer,
-    defaultValue: 0
-  },
-  frontSquatMax: {
-    type: SimpleSchema.Integer,
-    defaultValue: 0
-  },
-  shoulderText: {
-    type: String,
-    required: false
-  },
-  legText: {
-    type: String,
-    required: false
-  },
-  armText: {
-    type: String,
-    required: false
-  },
-  chestText: {
-    type: String,
-    required: false
-  },
-  backText: {
-    type: String,
-    required: false
-  }
-});
 
 const WeightSettingsSchema = new SimpleSchema({
   user: {
@@ -305,7 +236,7 @@ if (Meteor.isServer) {
           $set: {
             "fivethreeone.frontSquatMax": frontSquatMax,
             "fivethreeone.closeGripBenchMax": closeGripBenchMax,
-            "fivethreeone.sumoDeadliftmax": sumoDeadliftMax,
+            "fivethreeone.sumoDeadliftMax": sumoDeadliftMax,
             "fivethreeone.inclineBenchMax": inclineBenchMax,
             lastUpdated: new Date()
           }
@@ -356,6 +287,22 @@ if (Meteor.isServer) {
           }
         }
       );
-    }
-  });
+    },
+
+    /*
+    -------------------------------------------METHODS FOR POWER BB 
+    */
+
+    // updateNotesUser(notes, lift, userId) {
+    //   WeightSettings.update(
+    //     { user: userId },
+    //     {
+    //       $set: {
+    //         : frontSquatMax,
+    //         lastUpdated: new Date()
+    //       }
+    //     }
+    //   );
+    // }
+  }); //end of Meteor.methods
 }

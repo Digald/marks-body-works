@@ -74,7 +74,7 @@ class RepMaxForms extends Component {
 
   render() {
     if (!this.props.ready) {
-      return <div>Loading</div>;
+      return <div>Loading</div>
     }
     return (
       <div className="RepMaxForms">
