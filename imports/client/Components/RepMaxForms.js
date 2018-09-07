@@ -12,10 +12,8 @@ class RepMaxForms extends Component {
     const benchMax = parseInt(this.refs.benchmax.value.trim());
     const deadliftMax = parseInt(this.refs.deadmax.value.trim());
     const overheadMax = parseInt(this.refs.ohpmax.value.trim());
-    if (
-      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
-      Meteor.user()
-    ) {
+    const { weights } = this.props;
+    if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
       Meteor.call(
         "updateRepMaxForUser",
@@ -67,13 +65,14 @@ class RepMaxForms extends Component {
     if (Meteor.user() && weights.length > 0) {
       return weights[0][whatLift];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
+      console.log(nonUserWeights[0][whatLift]);
       return nonUserWeights[0][whatLift];
     }
   }
 
   render() {
     if (!this.props.ready) {
-      return <div>Loading</div>
+      return <div>Loading</div>;
     }
     return (
       <div className="RepMaxForms">

@@ -12,10 +12,7 @@ class SecondaryMaxes extends Component {
     const inclineMax = parseInt(this.refs.inclinemax.value.trim());
     const frontMax = parseInt(this.refs.frontmax.value.trim());
     const closegripMax = parseInt(this.refs.closegripmax.value.trim());
-    if (
-      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
-      Meteor.user()
-    ) {
+    if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
       Meteor.call(
         "updateSecondaryMaxForUser",
@@ -28,7 +25,7 @@ class SecondaryMaxes extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightRefId")) {
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(

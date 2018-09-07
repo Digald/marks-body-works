@@ -8,10 +8,8 @@ class NotesField extends Component {
     e.preventDefault();
     const notes = e.target.value;
     const { program, weights } = this.props;
-    if (
-      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
-      Meteor.user()
-    ) {
+    console.log(weights);
+    if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
 
       Meteor.call(
@@ -23,7 +21,7 @@ class NotesField extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightRefId") && weights.length < 1) {
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
@@ -35,7 +33,7 @@ class NotesField extends Component {
           if (err) console.log(err);
         }
       );
-    } else {
+    } else if (!localStorage.getItem("weightRefId")) {
       console.log("No user or localstorage and must be inserted");
 
       Meteor.call(
@@ -82,6 +80,6 @@ export default withTracker(() => {
   return {
     nonUserWeights: WeightSettings.find({ _id: localStorageId }).fetch(),
     ready: allWeights.ready(),
-    weights: WeightSettings.find({}).fetch()
+    weights: WeightSettings.find({ user: Meteor.user() }).fetch()
   };
 })(NotesField);

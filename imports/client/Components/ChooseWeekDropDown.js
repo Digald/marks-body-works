@@ -24,16 +24,13 @@ class ChooseWeekDropDown extends Component {
 
   async handleChange(e) {
     const week = e.target.value;
-    if (
-      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
-      Meteor.user()
-    ) {
+    if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
 
       Meteor.call("updateWeekOfUser", week, Meteor.userId(), (err, res) => {
         if (err) console.log(err);
       });
-    } else if (localStorage.getItem("weightRefId")) {
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(

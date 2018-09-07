@@ -11,10 +11,8 @@ class ChooseWeek531 extends Component {
 
   async handleChange(e) {
     const week = e.target.value;
-    if (
-      WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
-      Meteor.user()
-    ) {
+    const { weights } = this.props;
+    if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
 
       Meteor.call(
@@ -25,7 +23,7 @@ class ChooseWeek531 extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightRefId")) {
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
