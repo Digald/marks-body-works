@@ -50,7 +50,7 @@ class PBBTable extends Component {
           <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="SHOULDERS" program="powerbb"/>
+          <NotesField day="SHOULDERS" program="powerbb.shoulderText"/>
         </div>
         <div className="PBBTable__day2">
           <h3>Day 2 (Legs)</h3>
@@ -59,7 +59,7 @@ class PBBTable extends Component {
           <p>Rear Deltoid Raise 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="LEGS" program="powerbb"/>
+          <NotesField day="LEGS" program="powerbb.legText"/>
         </div>
         <div className="PBBTable__day3">
           <h3>Day 3 (Arms)</h3>
@@ -71,7 +71,7 @@ class PBBTable extends Component {
           <p>Straight Bar Tripcep Pushdown 3x12</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="ARMS" program="powerbb"/>
+          <NotesField day="ARMS" program="powerbb.armText"/>
         </div>
         <div className="PBBTable__day4">
           <h3>Day 4 (Chest)</h3>
@@ -80,7 +80,7 @@ class PBBTable extends Component {
           <p>Incline Dumbell Fly 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="CHEST" program="powerbb"/>
+          <NotesField day="CHEST" program="powerbb.chestText"/>
         </div>
         <div className="PBBTable__day5">
           <h3>Day 5 (Back)</h3>
@@ -89,7 +89,7 @@ class PBBTable extends Component {
           <p>Lat Pulldown 3x8</p>
           <p>Personal Ab Routine</p>
           <p>HIIT Cardio Routine</p>
-          <NotesField day="BACK" program="powerbb"/>
+          <NotesField day="BACK" program="powerbb.backText"/>
         </div>
       </div>
     );

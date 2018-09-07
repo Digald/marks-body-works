@@ -125,12 +125,16 @@ if (Meteor.isServer) {
       if (Meteor.user()) {
         id = WeightSettings.insert({
           user: userId,
-          "powerbb.workoutWeek": week,
+          powerbb: {
+            workoutWeek: week
+          },
           lastUpdated: new Date()
         });
       } else if (!Meteor.user()) {
         id = WeightSettings.insert({
-          "powerbb.workoutWeek": week,
+          powerbb: {
+            workoutWeek: week
+          },
           lastUpdated: new Date()
         });
       }
@@ -290,19 +294,48 @@ if (Meteor.isServer) {
     },
 
     /*
-    -------------------------------------------METHODS FOR POWER BB 
+    -------------------------------------------METHODS FOR NOTES
     */
 
-    // updateNotesUser(notes, lift, userId) {
-    //   WeightSettings.update(
-    //     { user: userId },
-    //     {
-    //       $set: {
-    //         : frontSquatMax,
-    //         lastUpdated: new Date()
-    //       }
-    //     }
-    //   );
-    // }
+    updateNotesUser(notes, program, userId) {
+      WeightSettings.update(
+        { user: userId },
+        {
+          $set: {
+            [program]: notes,
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    updateNotesStorage(notes, program, weightSettingsId) {
+      WeightSettings.update(
+        { _id: weightSettingsId },
+        {
+          $set: {
+            [program]: notes,
+            lastUpdated: new Date()
+          }
+        }
+      );
+    },
+
+    insertNotes(notes, program, userId) {
+      let id;
+      if (Meteor.user()) {
+        id = WeightSettings.insert({
+          user: userId,
+          [program]: notes,
+          lastUpdated: new Date()
+        });
+      } else if (!Meteor.user()) {
+        id = WeightSettings.insert({
+          [program]: notes,
+          lastUpdated: new Date()
+        });
+      }
+      return id;
+    }
   }); //end of Meteor.methods
 }

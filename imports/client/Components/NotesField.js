@@ -7,22 +7,29 @@ class NotesField extends Component {
   handleChange(e) {
     e.preventDefault();
     const notes = e.target.value;
-    const { program } = this.props;
+    const { program, weights } = this.props;
     if (
       WeightSettings.find({ user: Meteor.userId() }).fetch().length > 0 &&
       Meteor.user()
     ) {
       console.log("A user has been found and updated");
 
-      Meteor.call("updateWeekOfUser", notes, Meteor.userId(), (err, res) => {
-        if (err) console.log(err);
-      });
-    } else if (localStorage.getItem("weightRefId")) {
+      Meteor.call(
+        "updateNotesUser",
+        notes,
+        program,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+        }
+      );
+    } else if (localStorage.getItem("weightRefId") && weights.length < 1) {
       console.log("Localstorage but not a user has been found and updated");
 
       Meteor.call(
-        "updateWeekOfStorage",
+        "updateNotesStorage",
         notes,
+        program,
         localStorage.getItem("weightRefId"),
         (err, res) => {
           if (err) console.log(err);
@@ -32,8 +39,9 @@ class NotesField extends Component {
       console.log("No user or localstorage and must be inserted");
 
       Meteor.call(
-        "insertWeekOfProgramPowerbb",
-        week,
+        "insertNotes",
+        notes,
+        program,
         Meteor.userId(),
         (err, res) => {
           if (err) console.log(err);
@@ -45,13 +53,22 @@ class NotesField extends Component {
     }
   }
 
+  renderDefaultValue() {
+    const { program, weights, nonUserWeights } = this.props;
+    const programArr = program.split(".");
+    if (Meteor.user() && weights.length > 0) {
+      return weights[0][programArr[0]][programArr[1]];
+    } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
+      return nonUserWeights[0][programArr[0]][programArr[1]];
+    }
+  }
+
   render() {
-    console.log(this.props);
     return (
       <form className="NotesField">
         <textarea
           className="NotesField__textarea"
-          defaultValue={`${this.props.day} notes`}
+          defaultValue={this.renderDefaultValue()}
           onChange={e => this.handleChange(e)}
         />
       </form>
