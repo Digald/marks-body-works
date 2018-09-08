@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
  
+/*
+Meteor component for user authentication. Used in the navbar of the page.
+*/
+
 export default class AccountsUIWrapper extends Component {
   componentDidMount() {
     // Use Meteor Blaze to render login buttons

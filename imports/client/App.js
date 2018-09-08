@@ -5,6 +5,10 @@ import LandingPage from "./Pages/LandingPage";
 import Powerbb from "./Pages/Powerbb";
 import FiveThreeOne from "./Pages/FiveThreeOne";
 
+/* 
+Acts as the router of the application.
+*/
+
 class App extends Component {
   render() {
     return (

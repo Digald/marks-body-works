@@ -6,6 +6,10 @@ import RepMaxForms from "../Components/RepMaxForms";
 import PBBLifts from "../Components/PBBLifts";
 import ChooseWeekDropDown from "../Components/ChooseWeekDropDown";
 
+/* 
+The parent page component containing other child components that make up the Power BB program.
+*/
+
 class Powerbb extends Component {
   render() {
     return (

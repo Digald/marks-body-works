@@ -4,7 +4,13 @@ import SectionTitle from "./SectionTitle";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+A form of inputs for max weights of secondary lifts. These numbers are used and calculated for the 5/3/1 program. 
+This component is in charge of inserting, updating, and rendering these numbers to the database and page.
+*/
+
 class SecondaryMaxes extends Component {
+  
   handleSubmit(e) {
     e.preventDefault();
     // Parse submitted values into integers to store
@@ -12,7 +18,7 @@ class SecondaryMaxes extends Component {
     const inclineMax = parseInt(this.refs.inclinemax.value.trim());
     const frontMax = parseInt(this.refs.frontmax.value.trim());
     const closegripMax = parseInt(this.refs.closegripmax.value.trim());
-    const {weights} = this.props;
+    const { weights } = this.props;
     if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
       Meteor.call(

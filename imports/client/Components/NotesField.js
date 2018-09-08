@@ -3,16 +3,21 @@ import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+This component is rendered after each of the program days and is 
+for keeping notes on each day. This component controls inserting, 
+updating, and render notes to the database and back to the textfield.
+*/
+
 class NotesField extends Component {
+
   handleChange(e) {
-    console.log('hit on change');
     const notes = e.target.value;
     const { program, weights } = this.props;
-    console.log(weights.length);
-    console.log(Meteor.user());
-    if (weights.length > 0 && Meteor.user()) {
-      console.log("A user has been found and updated");
 
+    if (weights.length > 0 && Meteor.user()) {
+      
+      console.log("A user has been found and updated");
       Meteor.call(
         "updateNotesUser",
         notes,
@@ -22,9 +27,10 @@ class NotesField extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
-      console.log("Localstorage but not a user has been found and updated");
 
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
+      
+      console.log("Localstorage but not a user has been found and updated");
       Meteor.call(
         "updateNotesStorage",
         notes,
@@ -34,9 +40,10 @@ class NotesField extends Component {
           if (err) console.log(err);
         }
       );
-    } else if (!localStorage.getItem("weightRefId")) {
-      console.log("No user or localstorage and must be inserted");
 
+    } else if (!localStorage.getItem("weightRefId")) {
+      
+      console.log("No user or localstorage and must be inserted");
       Meteor.call(
         "insertNotes",
         notes,
@@ -49,6 +56,7 @@ class NotesField extends Component {
           }
         }
       );
+
     }
   }
 

@@ -4,6 +4,13 @@ import NotesField from "./NotesField";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+This component is the list of exercises for Power BB that get displayed to 
+the page. Methods in this component also take the one rep maxes and calculate 
+the appropriate weights for the core exercises. The amount of reps is determined 
+from the "workoutWeek" property.
+*/
+
 class PBBTable extends Component {
   calculateForUser(whatLift) {
     const { weights } = this.props;

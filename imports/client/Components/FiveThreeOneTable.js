@@ -4,6 +4,14 @@ import NotesField from "./NotesField";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+This component is the list of exercises for 5/3/1 that get displayed to 
+the page. Methods in this component also take the one rep maxes and calculate 
+the appropriate weights for the core exercises. The secondary maxes component 
+also gets used and rendered. The amount of reps is determined from the "workoutWeek"
+ property.
+*/
+
 class FiveThreeOneTable extends Component {
   state = {
     weeks: [

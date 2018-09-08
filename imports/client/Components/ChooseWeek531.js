@@ -4,12 +4,18 @@ import SectionTitle from "./SectionTitle";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+This component renders the drop down form for selecting what week you're 
+]on in the program. It is also in charge of inserting, updating your week 
+to the database.
+*/
+
 class ChooseWeek531 extends Component {
   state = {
     arrayOfValues: ["5 / 5 / 5", "3 / 3 / 3", "5 / 3 / 1", "Deload"]
   };
 
-  async handleChange(e) {
+  handleChange(e) {
     const week = e.target.value;
     const { weights } = this.props;
     if (weights.length > 0 && Meteor.user()) {

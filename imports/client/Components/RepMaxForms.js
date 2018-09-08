@@ -4,6 +4,12 @@ import SectionTitle from "./SectionTitle";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+A form of inputs for one rep maxes. These weights are used across multiple programs and 
+are caculated by each respectfully. This component is in charge of inserting, updating, 
+and rendering these numbers to the database and the page.
+*/
+
 class RepMaxForms extends Component {
   handleSubmit(e) {
     e.preventDefault();

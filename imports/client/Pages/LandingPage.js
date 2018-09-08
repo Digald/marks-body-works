@@ -4,6 +4,10 @@ import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
 import ImageCarousel from "../Components/ImageCarousel";
 
+/* 
+The landing page at the root directory of the applicaiton. Contains navagation components mostly.
+*/
+
 class LandingPage extends Component {
   render() {
     return (

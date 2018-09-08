@@ -5,6 +5,11 @@ import PBBTable from "./PBBTable";
 import { withTracker } from "meteor/react-meteor-data";
 import { WeightSettings } from "../../api/weightSettings";
 
+/* 
+This component acts as a wrapper for the entire program. Nested in this component 
+is the title of the program week, and the table that lists all the exercises. 
+*/
+
 class PBBLifts extends Component {
 
   renderSavedWeek() {

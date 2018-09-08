@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/* 
+This is the navagation bar that takes you between application routes. 
+These routes include programs, and information. Usually included on all pages.
+*/
+
 const MainNav = () => (
   <div className="MainNav">
     <Link to="/">
