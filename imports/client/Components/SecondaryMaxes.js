@@ -12,6 +12,7 @@ class SecondaryMaxes extends Component {
     const inclineMax = parseInt(this.refs.inclinemax.value.trim());
     const frontMax = parseInt(this.refs.frontmax.value.trim());
     const closegripMax = parseInt(this.refs.closegripmax.value.trim());
+    const {weights} = this.props;
     if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
       Meteor.call(

@@ -65,7 +65,6 @@ class RepMaxForms extends Component {
     if (Meteor.user() && weights.length > 0) {
       return weights[0][whatLift];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
-      console.log(nonUserWeights[0][whatLift]);
       return nonUserWeights[0][whatLift];
     }
   }

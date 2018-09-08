@@ -64,11 +64,6 @@ export const FiveThreeOneSchema = new SimpleSchema({
     defaultValue: "LEGS notes",
     required: false
   },
-  armText: {
-    type: String,
-    defaultValue: "ARMS notes",
-    required: false
-  },
   chestText: {
     type: String,
     defaultValue: "CHEST notes",

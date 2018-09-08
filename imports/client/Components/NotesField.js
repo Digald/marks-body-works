@@ -8,7 +8,6 @@ class NotesField extends Component {
     e.preventDefault();
     const notes = e.target.value;
     const { program, weights } = this.props;
-    console.log(weights);
     if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
 

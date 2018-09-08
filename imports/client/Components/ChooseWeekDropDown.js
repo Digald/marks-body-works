@@ -24,15 +24,17 @@ class ChooseWeekDropDown extends Component {
 
   async handleChange(e) {
     const week = e.target.value;
+    const { weights } = this.props;
     if (weights.length > 0 && Meteor.user()) {
-      console.log("A user has been found and updated");
 
+      console.log("A user has been found and updated");
       Meteor.call("updateWeekOfUser", week, Meteor.userId(), (err, res) => {
         if (err) console.log(err);
       });
-    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
-      console.log("Localstorage but not a user has been found and updated");
 
+    } else if (localStorage.getItem("weightRefId") && !Meteor.user()) {
+      
+      console.log("Localstorage but not a user has been found and updated");
       Meteor.call(
         "updateWeekOfStorage",
         week,
@@ -41,18 +43,25 @@ class ChooseWeekDropDown extends Component {
           if (err) console.log(err);
         }
       );
-    } else {
-      console.log("No user or localstorage and must be inserted");
 
-      Meteor.call("insertWeekOfProgramPowerbb", week, Meteor.userId(), (err, res) => {
-        if (err) console.log(err);
-        if (!Meteor.user()) {
-          localStorage.setItem("weightRefId", res);
+    } else {
+      
+      console.log("No user or localstorage and must be inserted");
+      Meteor.call(
+        "insertWeekOfProgramPowerbb",
+        week,
+        Meteor.userId(),
+        (err, res) => {
+          if (err) console.log(err);
+          if (!Meteor.user()) {
+            localStorage.setItem("weightRefId", res);
+          }
         }
-      });
+      );
+      
     }
   }
-  
+
   renderSavedWeek() {
     const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights.length > 0) {
@@ -70,7 +79,11 @@ class ChooseWeekDropDown extends Component {
       <div className="ChooseWeekDropDown">
         <SectionTitle title={"Choose Week"} />
         <form>
-          <select value={this.renderSavedWeek()} onChange={e => this.handleChange(e)} name="week">
+          <select
+            value={this.renderSavedWeek()}
+            onChange={e => this.handleChange(e)}
+            name="week"
+          >
             {this.state.arrayOfValues.map((element, i) => {
               return (
                 <option key={i} value={element}>

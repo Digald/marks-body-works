@@ -274,9 +274,7 @@ if (Meteor.isServer) {
         { user: userId },
         {
           $set: {
-            fivethreeone: {
-              workoutWeek: week
-            },
+            "fivethreeone.workoutWeek": week,
             lastUpdated: new Date()
           }
         }
@@ -288,9 +286,7 @@ if (Meteor.isServer) {
         { _id: weightSettingsId },
         {
           $set: {
-            fivethreeone: {
-              workoutWeek: week
-            },
+            "fivethreeone.workoutWeek": week,
             lastUpdated: new Date()
           }
         }
@@ -326,7 +322,7 @@ if (Meteor.isServer) {
     },
 
     insertNotes(notes, program, userId) {
-      const programArr = program.split('.');
+      const programArr = program.split(".");
       let id;
       if (Meteor.user()) {
         id = WeightSettings.insert({
