@@ -5,9 +5,11 @@ import { WeightSettings } from "../../api/weightSettings";
 
 class NotesField extends Component {
   handleChange(e) {
-    e.preventDefault();
+    console.log('hit on change');
     const notes = e.target.value;
     const { program, weights } = this.props;
+    console.log(weights.length);
+    console.log(Meteor.user());
     if (weights.length > 0 && Meteor.user()) {
       console.log("A user has been found and updated");
 
@@ -66,7 +68,7 @@ class NotesField extends Component {
         <textarea
           className="NotesField__textarea"
           defaultValue={this.renderDefaultValue()}
-          onChange={e => this.handleChange(e)}
+          onChange={(e) => this.handleChange(e)}
         />
       </form>
     );
@@ -79,6 +81,6 @@ export default withTracker(() => {
   return {
     nonUserWeights: WeightSettings.find({ _id: localStorageId }).fetch(),
     ready: allWeights.ready(),
-    weights: WeightSettings.find({ user: Meteor.user() }).fetch()
+    weights: WeightSettings.find({}).fetch()
   };
 })(NotesField);
