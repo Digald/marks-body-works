@@ -76,9 +76,6 @@ class SecondaryMaxes extends Component {
   }
 
   render() {
-    if (!this.props.ready) {
-      return <div>Loading</div>;
-    }
     return (
       <div className="RepMaxForms">
         <SectionTitle title="Secondary Maxes" />

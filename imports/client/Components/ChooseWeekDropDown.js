@@ -78,9 +78,6 @@ class ChooseWeekDropDown extends Component {
   }
 
   render() {
-    if (!this.props.ready) {
-      return <div>Loading</div>;
-    }
     return (
       <div className="ChooseWeekDropDown">
         <SectionTitle title={"Choose Week"} />

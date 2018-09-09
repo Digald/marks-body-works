@@ -21,17 +21,13 @@ class FiveThreeOneLifts extends Component {
   }
 
   render() {
-    if (!this.props.ready) {
-      return <div>Loading</div>;
-    } else {
-      const title = this.renderSavedWeek();
-      return (
-        <div className="FiveThreeOneLifts">
-          <SectionTitle title={title} />
-          <FiveThreeOneTable />
-        </div>
-      );
-    }
+    const title = this.renderSavedWeek();
+    return (
+      <div className="FiveThreeOneLifts">
+        <SectionTitle title={title} />
+        <FiveThreeOneTable />
+      </div>
+    );
   }
 }
 

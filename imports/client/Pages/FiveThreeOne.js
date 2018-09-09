@@ -6,6 +6,8 @@ import RepMaxForms from "../Components/RepMaxForms";
 import SecondaryMaxes from '../Components/SecondaryMaxes';
 import ChooseWeek531 from "../Components/ChooseWeek531";
 import FiveThreeOneLifts from '../Components/FiveThreeOneLifts';
+// meteor imports
+import { withTracker } from "meteor/react-meteor-data";
 
 /* 
 The parent page component containing other child components that make up Wender's 5/3/1 program.
@@ -13,6 +15,9 @@ The parent page component containing other child components that make up Wender'
 
 class FiveThreeOne extends Component {
   render() {
+    if (!this.props.ready) {
+      return <div className="loading-screen">Loading...</div>
+    }
     return (
       <div className="FiveOneThree">
         <HeaderNav />
@@ -26,4 +31,9 @@ class FiveThreeOne extends Component {
   }
 }
 
-export default FiveThreeOne;
+export default withTracker(() => {
+  const allWeights = Meteor.subscribe("allWeights");
+  return {
+    ready: allWeights.ready()
+  };
+})(FiveThreeOne);

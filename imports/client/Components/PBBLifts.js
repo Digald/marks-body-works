@@ -11,9 +11,8 @@ is the title of the program week, and the table that lists all the exercises.
 */
 
 class PBBLifts extends Component {
-
   renderSavedWeek() {
-    const {weights, nonUserWeights} = this.props;
+    const { weights, nonUserWeights } = this.props;
     if (Meteor.user() && weights.length > 0) {
       return weights[0].powerbb.workoutWeek;
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
@@ -24,17 +23,13 @@ class PBBLifts extends Component {
   }
 
   render() {
-    if (!this.props.ready) {
-      return <div>Loading</div>
-    } else {
-      const title = this.renderSavedWeek();
-      return (
-        <div className="PBBLifts">
-          <SectionTitle title={title} />
-          <PBBTable />
-        </div>
-      );
-    }
+    const title = this.renderSavedWeek();
+    return (
+      <div className="PBBLifts">
+        <SectionTitle title={title} />
+        <PBBTable />
+      </div>
+    );
   }
 }
 

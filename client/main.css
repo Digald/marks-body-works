@@ -267,3 +267,18 @@ body {
   cursor: pointer;
   text-decoration: none;
 }
+
+/*
+-------------------------------------------------------------------------------------Loading Screen
+*/
+
+.loading-screen {
+  background: yellow;
+  height: 100%;
+  color: black;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
