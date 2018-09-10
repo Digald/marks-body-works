@@ -53,7 +53,7 @@ class FiveThreeOneTable extends Component {
       return weeks.map(element => {
         if (weights[0].fivethreeone.workoutWeek === element[2]) {
           return element[0].map((percentage, i) => {
-            return `${(weights[0][whatLift] * percentage).toFixed(1)}x${
+            return `${(weights[0][whatLift] * 0.9 * percentage).toFixed(1)}x${
               element[3][i]
             } `;
           });
@@ -79,9 +79,9 @@ class FiveThreeOneTable extends Component {
       return weeks.map(element => {
         if (nonUserWeights[0].fivethreeone.workoutWeek === element[2]) {
           return element[0].map((percentage, i) => {
-            return `${(nonUserWeights[0][whatLift] * percentage).toFixed(1)}x${
-              element[3][i]
-            } `;
+            return `${(nonUserWeights[0][whatLift] * 0.9 * percentage).toFixed(
+              1
+            )}x${element[3][i]} `;
           });
         }
       });

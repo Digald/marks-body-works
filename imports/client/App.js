@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./Pages/LandingPage";
 import Powerbb from "./Pages/Powerbb";
 import FiveThreeOne from "./Pages/FiveThreeOne";
+import AboutPage from './Pages/AboutPage';
 
 /* 
 Acts as the router of the application.
@@ -17,6 +18,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/programs/powerbb" component={Powerbb} />
           <Route exact path="/programs/531" component={FiveThreeOne} />
+          <Route exact path="/about" component={AboutPage} />
         </Switch>
       </Router>
     );

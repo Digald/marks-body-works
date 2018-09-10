@@ -23,7 +23,7 @@ const MainNav = () => (
       <Link to="/programs/531">
         <p className="MainNav__main-items__item">5/3/1 Simplest Template</p>
       </Link>
-      <Link to="about">
+      <Link to="/about">
         <p className="MainNav__main-items__item MainNav__main-items__item-last">Help</p>
       </Link>
     </div>
