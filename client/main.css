@@ -18,19 +18,9 @@ body {
 -------------------------------------------------------------------------------------Landing Page
 */
 .LandingPage {
-  /* background: -webkit-linear-gradient(to bottom, #434343, #000000); */
   height: 100%;
-  background: #11998e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    white,
-    #000000
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    white,
-    #000000
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  overflow: hidden;
+  background: #222222;
 }
 
 .LandingPage__wrapper {
@@ -40,9 +30,10 @@ body {
 }
 
 .LandingPage__wrapper__grid {
+  height: 100%;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 100px auto;
+  grid-template-rows: calc(1fr - 44px);
 }
 
 @media only screen and (max-width: 1216px) {
@@ -139,45 +130,44 @@ body {
   font-weight: bold;
 }
 
-.ImageCarousel {
-  grid-area: 1 / 1 / 2 / 1;
-  z-index: 1;
+.ProgramPreviews {
+  background: #c0392b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom right,
+    #8e44ad,
+    #c0392b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom right,
+    #8e44ad,
+    #c0392b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  grid-area: 1 / 1 / 2 / 2;
   height: 100%;
+  z-index: 1;
 }
-
-.legend {
-  font-family: "Permanent Marker", cursive;
-}
-
-/*
--------------------------------------------------------------------------------------Power BB page
-*/
+/* -------------------------------------------------------------------------------------Power BB page */
 .Powerbb .MainNav {
   width: 1000px;
 }
-
 @media only screen and (max-width: 700px) {
   .Powerbb .MainNav {
     width: auto;
   }
 }
-
 .Powerbb__max-title {
   display: flex;
   justify-content: center;
 }
-
 .RepMaxForms form {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-
 .RepMaxForms input {
   width: 50px;
   margin-right: 5px;
 }
-
 .RepMaxForms__save {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   color: #222222;
@@ -190,12 +180,10 @@ body {
   font-size: 20px;
   border: none;
 }
-
 .ChooseWeekDropDown form {
   display: flex;
   justify-content: center;
 }
-
 .PBBTable {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -206,14 +194,13 @@ body {
   align-items: center;
   margin-bottom: 5%;
 }
-
 .PBBTable div {
   text-align: center;
 }
-
 .PBBTable__day1 {
   grid-area: 1 / 1 / 2 / 5;
 }
+
 .PBBTable__day2 {
   grid-area: 2 / 1 / 3 / 5;
 }
@@ -226,7 +213,6 @@ body {
 .PBBTable__day5 {
   grid-area: 5 / 1 / 6 / 5;
 }
-
 .NotesField__textarea {
   display: flex;
   flex-wrap: wrap;
@@ -240,22 +226,16 @@ body {
     width: 400px;
   }
 }
-/*
--------------------------------------------------------------------------------------531 Page
-*/
+/* -------------------------------------------------------------------------------------531 Page */
 .FiveOneThree .MainNav {
   width: 1000px;
 }
-
 @media only screen and (max-width: 700px) {
   .FiveOneThree .MainNav {
     width: auto;
   }
 }
-
-/*
--------------------------------------------------------------------------------------About Page
-*/
+/* -------------------------------------------------------------------------------------About Page */
 .Program-Descriptions {
   margin: 0 30% 10% 30%;
 }
@@ -264,25 +244,17 @@ body {
     margin: 0 10% 10% 10%;
   }
 }
-/*
--------------------------------------------------------------------------------------Accounts Wrapper
-*/
-
+/* -------------------------------------------------------------------------------------Accounts Wrapper */
 #login-sign-in-link {
   padding: 10px;
   margin: 0;
 }
-
 #login-buttons a,
 .accounts-dialog a {
   cursor: pointer;
   text-decoration: none;
 }
-
-/*
--------------------------------------------------------------------------------------Loading Screen
-*/
-
+/* -------------------------------------------------------------------------------------Loading Screen */
 .loading-screen {
   background: yellow;
   height: 100%;
@@ -292,4 +264,3 @@ body {
   justify-content: center;
   align-items: center;
 }
-

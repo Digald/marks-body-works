@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // Components
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
+import ProgramPreviews from "../Components/ProgramPreviews";
 import ImageCarousel from "../Components/ImageCarousel";
 
 /* 
@@ -16,7 +17,7 @@ class LandingPage extends Component {
           <HeaderNav />
           <div className="LandingPage__wrapper__grid">
             <MainNav />
-            <ImageCarousel />
+            <ProgramPreviews />
           </div>
         </div>
       </div>
