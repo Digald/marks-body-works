@@ -2,35 +2,39 @@ import React, { Component } from "react";
 // import components
 import SectionTitle from "./SectionTitle";
 
+/*
+Contains all of the text content in the /about page.
+*/
+
 class ProgramDescriptions extends Component {
   render() {
     return (
       <div className="Program-Descriptions">
         <SectionTitle title="Why You Should Read This Page Before Starting" />
         <p>
-          If you look though the programs, you'll notice they may or may not be
-          very intuitive at first. The descriptions of each program will go into
-          the workout portion as well as what your calorie intake should look
-          like. All programs have a notes sections to write your numbers and
-          keep track of your progress.
+          As you look though the programs, you'll notice they may or may not be
+          very intuitive at first. The following descriptions of each program
+          will go into the workout portion as well as what your calorie intake
+          should look like. All programs have a notes sections to write your
+          numbers and keep track of your progress.
         </p>
         <SectionTitle title="How To Use Power BB" />
         <p>
           It's important to note that this program is based on Mike o'Hearn's
-          Power Bodybuilding. I figured I don't want to explicitly use the same
-          name because my version may vary slightly
+          Power Bodybuilding. I don't want to explicitly use the same name
+          because my version may vary.
         </p>
         <h3>Diet</h3>
         <p>
           This program is known as a "cutting" program. Since these programs are
-          for intermediate lifters already, you should have an idea of what your
-          TDE is already.
+          intended for intermediate lifters already, you should have an idea of
+          what your total daily energy expenditure (TDEE) is already.
         </p>
         <p>
           This is a 12-week program and it is divided into three phases. For the
           first four weeks, you should increase your daily calorie count by 500.
           The next four weeks, 5-8, you take away the 500 extra calories you
-          added previously. For the final four weeks, You should be removing an
+          added previously. For the final four weeks, you should be removing an
           additional 500 daily calorie to finish off the program.
         </p>
         <h3>Program</h3>
@@ -61,22 +65,24 @@ class ProgramDescriptions extends Component {
         </p>
         <h3>Diet</h3>
         <p>
-          The calorie forumla for this program can be up to your goals. I know
+          The calorie forumla for this program is all up to your goals. I know
           this program is described as a raw strength building program. With
           that said, it would probably be best to consume an excess amount of
-          calories compared to your TDE. Although I can also find it reasonable
-          to keep your calorie count at a solid maintenance based on your TDE
-          and continue to perform although I'm sure you'll get the most out of
-          the program by eating.
+          calories compared to your TDEE. Although I can also find it reasonable
+          to keep your calorie count at a solid maintenance level based on your
+          TDEE and continue to perform. However, I'm sure you'll get the most
+          out of the program by eating.
         </p>
         <h3>Program</h3>
         <p>
           5/3/1 is only a four week cycle. Each day is going to start off with
           one of your main lifts. For these lifts, you take your 1 rep max, and
-          then use 90% of it as your training max. The first week, you will
-          perform 3 sets of 5 reps with the last rep being as many as possible
-          as long as you get 5. The second week you will perform 3 sets of 3
-          reps with the last being as many as possible as long as you get 3.
+          then use 90% of it as your training max. From that training max, a
+          certain perfentage will be taken for each set of your lifts. This
+          application will calculate all that for you. You will perform 3 sets
+          of 5 reps with the last rep being as many as possible as long as you
+          get 5. The second week you will perform 3 sets of 3 reps with the last
+          being as many as possible as long as you get 3.
         </p>
         <p>
           The third week is supposed to be your toughest. You will perform 3
@@ -84,7 +90,7 @@ class ProgramDescriptions extends Component {
           possible. If succesful you can chose to increase your maxes for next
           week. However, you still have one final week which is your deload.
           This is where you do 3 sets of 5 reps at a reduced weights. This
-          applications calculates everything for you.
+          application will take care of everything for you.
         </p>
         <p>
           Secondary Lifts follow a similar pattern as your main lifts. The
