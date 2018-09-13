@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 /* 
 
@@ -6,7 +7,14 @@ import React, { Component } from "react";
 
 class ProgramBox extends Component {
   render() {
-    return <div className="PreviewBox">Hello</div>;
+    return (
+      <Link to={this.props.link}>
+        <div className={this.props.class}>
+          <img src={this.props.image} alt={this.props.altText} />
+          <p>{this.props.description}</p>
+        </div>
+      </Link>
+    );
   }
 }
 

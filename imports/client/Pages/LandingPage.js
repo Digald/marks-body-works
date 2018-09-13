@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
 import ProgramPreviews from "../Components/ProgramPreviews";
-import ImageCarousel from "../Components/ImageCarousel";
 
 /* 
 The landing page at the root directory of the applicaiton. Contains navagation components mostly.
