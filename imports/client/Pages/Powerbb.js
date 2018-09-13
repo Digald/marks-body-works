@@ -21,6 +21,7 @@ class Powerbb extends Component {
       <div className="Powerbb">
         <HeaderNav />
         <MainNav />
+        <h1>Power BB</h1>
         <RepMaxForms />
         <ChooseWeekDropDown />
         <PBBLifts />

@@ -15,16 +15,16 @@ class ProgramPreviews extends Component {
           link="/programs/531"
           image="barbell.jpeg"
           altText="Loaded barbell on floor."
-          description="The Simplest Template for those wanting to build raw strength
-              slowly but surely!"
+          description="For those wanting to build massive raw strength and power
+              slowly but surely, ENTER HERE"
         />
         <PreviewBox
           class="PreviewBox PreviewBox-last"
           link="/programs/powerbb"
           image="curlbar.jpg"
           altText="EZcurl barbell loading on the floor surounded by weights."
-          description="The program For those wanting to lose fat, and maintain as much
-          strength as possible, and make those muscles show!"
+          description="For those wanting to lose fat, and maintain as much
+          strength as possible, and make those muscles show, ENTER HERE"
         />
       </div>
     );
