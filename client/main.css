@@ -122,7 +122,8 @@ body {
 
 .MainNav__main-items__item {
   padding: 10px;
-  border-right: 1px solid #222;
+  text-decoration: overline;
+  /* border-right: 1px solid #222; */
 }
 
 .MainNav__main-items__item-last {
@@ -131,6 +132,7 @@ body {
 
 .MainNav__main-items__item:hover {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .ProgramPreviews {
