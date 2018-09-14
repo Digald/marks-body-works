@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AccountsUIWrapper from '../AccountsUIWrapper';
+import AccountsUIWrapper from "../AccountsUIWrapper";
 
 /* 
 A different type of navagation bar. Usually displayed at the 
@@ -12,13 +12,13 @@ class HeaderNav extends Component {
   render() {
     return (
       <div className="HeaderNav">
+        <AccountsUIWrapper />
         <a target="_blank" href="https://github.com/Digald">
           <p className="HeaderNav__item">Github</p>
         </a>
         <a target="_blank" href="https://www.linkedin.com/in/markalaniz/">
           <p className="HeaderNav__item">LinkedIn</p>
         </a>
-        <AccountsUIWrapper/>
       </div>
     );
   }

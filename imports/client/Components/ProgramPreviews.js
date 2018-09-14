@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import PreviewBox from "./PreviewBox";
 
 /* 
-Body section of landing page. Contains all of the preview components for each of the available programs.
+Body section of landing page. Contains all of the preview components 
+for each of the available programs.
 */
 
 class ProgramPreviews extends Component {

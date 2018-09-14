@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 /* 
-
+Individual boxes that describe each program in the application. 
+Each box is also a link to that program if a user would click on it.
 */
 
 class ProgramBox extends Component {

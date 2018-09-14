@@ -41,7 +41,7 @@ class NotesField extends Component {
         }
       );
 
-    } else if (!localStorage.getItem("weightRefId")) {
+    } else {
       
       console.log("No user or localstorage and must be inserted");
       Meteor.call(
@@ -67,6 +67,8 @@ class NotesField extends Component {
       return weights[0][programArr[0]][programArr[1]];
     } else if (!Meteor.user() && localStorage.getItem("weightRefId")) {
       return nonUserWeights[0][programArr[0]][programArr[1]];
+    } else {
+      return `${this.props.day} notes`
     }
   }
 

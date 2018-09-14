@@ -5,6 +5,7 @@ import MainNav from "../Components/MainNav";
 import RepMaxForms from "../Components/RepMaxForms";
 import PBBLifts from "../Components/PBBLifts";
 import ChooseWeekDropDown from "../Components/ChooseWeekDropDown";
+import MobileNav from "../Components/MobileNav";
 // meteor imports
 import { withTracker } from "meteor/react-meteor-data";
 
@@ -15,13 +16,14 @@ The parent page component containing other child components that make up the Pow
 class Powerbb extends Component {
   render() {
     if (!this.props.ready) {
-      return <div className="loading-screen">Loading...</div>
+      return <div className="loading-screen">Loading...</div>;
     }
     return (
       <div className="Powerbb">
         <HeaderNav />
         <MainNav />
-        <h1>Power BB</h1>
+        <MobileNav />
+        <h1 className="program-title">Power BodyBuilding</h1>
         <RepMaxForms />
         <ChooseWeekDropDown />
         <PBBLifts />

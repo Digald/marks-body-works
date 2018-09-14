@@ -3,9 +3,10 @@ import React, { Component } from "react";
 import HeaderNav from "../Components/HeaderNav";
 import MainNav from "../Components/MainNav";
 import RepMaxForms from "../Components/RepMaxForms";
-import SecondaryMaxes from '../Components/SecondaryMaxes';
+import SecondaryMaxes from "../Components/SecondaryMaxes";
 import ChooseWeek531 from "../Components/ChooseWeek531";
-import FiveThreeOneLifts from '../Components/FiveThreeOneLifts';
+import FiveThreeOneLifts from "../Components/FiveThreeOneLifts";
+import MobileNav from "../Components/MobileNav";
 // meteor imports
 import { withTracker } from "meteor/react-meteor-data";
 
@@ -16,17 +17,18 @@ The parent page component containing other child components that make up Wender'
 class FiveThreeOne extends Component {
   render() {
     if (!this.props.ready) {
-      return <div className="loading-screen">Loading...</div>
+      return <div className="loading-screen">Loading...</div>;
     }
     return (
       <div className="FiveOneThree">
         <HeaderNav />
         <MainNav />
-        <h1>Simplest Template 5/3/1</h1>
+        <MobileNav />
+        <h1 className="program-title">Simplest Template 5/3/1</h1>
         <RepMaxForms />
-        <SecondaryMaxes/>
+        <SecondaryMaxes />
         <ChooseWeek531 />
-        <FiveThreeOneLifts/>
+        <FiveThreeOneLifts />
       </div>
     );
   }
