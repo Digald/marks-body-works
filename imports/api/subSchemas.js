@@ -1,5 +1,9 @@
 import SimpleSchema from "simpl-schema";
 
+/*
+Subschemas that will be used in the parent schema, WeightSettings.
+*/
+
 export const PowerbbSchema = new SimpleSchema({
   workoutWeek: {
     type: String,
