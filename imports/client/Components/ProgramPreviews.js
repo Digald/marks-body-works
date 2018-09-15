@@ -16,7 +16,7 @@ class ProgramPreviews extends Component {
           link="/programs/531"
           image="barbell.jpeg"
           altText="Loaded barbell on floor."
-          description="For those wanting to build massive raw strength and power
+          description="For those wanting to build massive raw strength and power,
               slowly but surely, ENTER HERE"
         />
         <PreviewBox
@@ -24,7 +24,7 @@ class ProgramPreviews extends Component {
           link="/programs/powerbb"
           image="curlbar.jpg"
           altText="EZcurl barbell loading on the floor surounded by weights."
-          description="For those wanting to lose fat, and maintain as much
+          description="For those wanting to lose fat, maintain as much
           strength as possible, and make those muscles show, ENTER HERE"
         />
       </div>
