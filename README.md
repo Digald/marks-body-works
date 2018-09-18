@@ -44,7 +44,8 @@ meteor
 
 Open the application in your browser on http://localhost:3000/
 
-End with an example of getting some data out of the system or using it for a little demo
+Seeing a console message such as this is normal and means you're application is ready.
+![Console logs after running meteor command](https://i.gyazo.com/5ad3156d85e1229cca17911379fa70d7.png)
 
 ## Deployment
 
