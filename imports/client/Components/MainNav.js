@@ -15,7 +15,7 @@ class MainNav extends Component {
     return (
       <div className="MainNav">
         <Link to="/">
-          <h1 className="MainNav__logo">Mark's Body Works</h1>
+          <h1 className="MainNav__logo">Strength & Body Works</h1>
         </Link>
         <div className="MainNav__burger-icon" onClick={() => this.toggleNav()}>
           <div />
